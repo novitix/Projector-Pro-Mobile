@@ -1,4 +1,5 @@
-var ip = require('ip');
+let ip = require('ip');
+let SqlString = require('sqlstring');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 2444;
@@ -24,9 +25,6 @@ app.get('/api/songs', (req, res) => {
             SendInfoByFilter(req.query.filter, res);
             break;
     }
-
-
-    
 });
 
 function SendBodyById(id, res) {
@@ -54,5 +52,13 @@ function SendInfoByNumber(number, res) {
 }
 
 function SendInfoByFilter(filter, res) {
-    return;
+    max_rows = 10
+    sql = SqlString.format("SELECT ID, Title, Number, Key FROM Songs WHERE Body LIKE ? LIMIT ?;", ['%' + filter + '%', max_rows]);
+    //console.log(sql);
+
+    db.all(sql, (err, items) => {
+            console.log(err ? err.message : 'Query by filter successful');
+            res.send(items);
+            return;
+            });
 }

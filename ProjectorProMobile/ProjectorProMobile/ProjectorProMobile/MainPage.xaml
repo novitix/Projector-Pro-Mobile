@@ -13,7 +13,7 @@
         <ContentPage.Content>
             <StackLayout>
                 <!-- Place new controls here -->
-                <Entry ReturnType="Search" Placeholder="Search" FontSize="Medium" FontFamily="sans-serif" TextChanged="Entry_TextChanged"/>
+                <Entry x:Name="txtSearch" ReturnType="Search" Placeholder="Search" FontSize="Medium" FontFamily="sans-serif" TextChanged="Search_TextChanged"/>
                 <Grid>
                     <ListView SelectionMode="None" x:Name="ListResultsView" ItemTapped="ListResultsView_ItemTapped"/>
                     <Label x:Name="lblMessage" HorizontalOptions="Center" Padding="0, 20, 0, 0"/>
@@ -26,8 +26,9 @@
         <ContentPage.Content>
             <StackLayout>
                 <!-- Place new controls here -->
-                <Entry ReturnType="Done" Placeholder="Enter IP here" FontSize="Medium" FontFamily="sans-serif"/>
-                <Entry ReturnType="Done" Placeholder="Enter Port here" FontSize="Medium" FontFamily="sans-serif"/>
+                <Entry x:Name="txtIp" ReturnType="Done" Placeholder="Enter IP here" FontSize="Medium" FontFamily="sans-serif" TextChanged="txtIp_TextChanged" Keyboard="Telephone"/>
+                <Entry x:Name="txtPort" ReturnType="Done" Placeholder="Enter Port here" FontSize="Medium" FontFamily="sans-serif" TextChanged="txtPort_TextChanged" Keyboard="Numeric"/>
+                <Button x:Name="btnSavePrefs" Text="Save" Clicked="btnSavePrefs_Clicked" IsEnabled="False"/>
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
