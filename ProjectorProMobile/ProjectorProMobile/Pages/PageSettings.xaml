@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectorProMobile.Pages.PageSettings"
+             BackgroundColor="#36382e">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label Text="Settings" HorizontalOptions="CenterAndExpand" TextColor="White"/>
+            <Entry x:Name="txtServerAddress" Placeholder="Enter server address here" TextChanged="txtServerAddress_TextChanged" BackgroundColor="White"/>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="Dark Mode" FontSize="20" VerticalOptions="Center" TextColor="White"/>
+                <Switch Grid.Column="2" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled" OnColor="#a39ba8" ThumbColor="#b8c5d6"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

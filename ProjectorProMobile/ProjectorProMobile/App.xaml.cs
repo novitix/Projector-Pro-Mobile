@@ -8,8 +8,8 @@ namespace ProjectorProMobile
     {
         public App()
         {
+            Device.SetFlags(new[] { "Brush_Experimental" });
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 

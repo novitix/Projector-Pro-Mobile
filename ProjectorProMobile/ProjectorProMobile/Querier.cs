@@ -14,9 +14,8 @@ using Xamarin.Essentials;
 
     public Querier()
     {
-        string ip = Preferences.Get("ip", "192.168.0.1");
-        string port = Preferences.Get("port", "2444");
-        baseUri = string.Format("http://{0}:{1}/api/songs", ip, port);
+        string url = Preferences.Get("serverAddress", "192.168.0.13");
+        baseUri = string.Format("http://{0}/api/songs", url);
         client.Timeout = TimeSpan.FromSeconds(8);
     }
 
