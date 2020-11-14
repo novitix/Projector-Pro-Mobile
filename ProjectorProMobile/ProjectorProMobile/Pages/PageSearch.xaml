@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cc="clr-namespace:CustomEntry"
              x:Class="ProjectorProMobile.Pages.PageSearch">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,11 +16,17 @@
             <!-- Place new controls here -->
             <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="100">
                 <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Background="{StaticResource ButtonBackground}"/>
-                <Entry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20" FontFamily="sans-serif" TextChanged="Search_TextChanged" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0.5,0.5,0.85,0.6" AbsoluteLayout.LayoutFlags="All" />
+                <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20" FontFamily="sans-serif" TextChanged="Search_TextChanged"  AbsoluteLayout.LayoutBounds="0.5,0.5,0.85,0.6" AbsoluteLayout.LayoutFlags="All" />
             </AbsoluteLayout>
 
             <Grid>
-                <ListView SelectionMode="None" x:Name="ListResultsView" ItemTapped="ListResultsView_ItemTapped"/>
+                <ListView SelectionMode="None" x:Name="ListResultsView" ItemTapped="ListResultsView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding}" TextColor="#03256c"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <Label x:Name="lblMessage" HorizontalOptions="Center" Padding="0, 20, 0, 0"/>
             </Grid>
         </StackLayout>

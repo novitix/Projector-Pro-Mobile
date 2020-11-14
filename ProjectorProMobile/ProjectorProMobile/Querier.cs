@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Linq;
 using Xamarin.Essentials;
+using Xamarin;
 
     class Querier
 {
@@ -14,9 +15,10 @@ using Xamarin.Essentials;
 
     public Querier()
     {
-        string url = Preferences.Get("serverAddress", "192.168.0.13");
-        baseUri = string.Format("http://{0}/api/songs", url);
-        client.Timeout = TimeSpan.FromSeconds(8);
+        string defaultUrl = "projector-pro-server.herokuapp.com";
+        string url = Preferences.Get("serverAddress", defaultUrl);
+        baseUri = string.IsNullOrWhiteSpace(url) ? string.Format("http://{0}/api/songs", defaultUrl) : string.Format("http://{0}/api/songs", url);
+        client.Timeout = TimeSpan.FromSeconds(10);
     }
 
     private enum SearchType
@@ -32,7 +34,9 @@ using Xamarin.Essentials;
         searchType = IsDigitsOnly(searchTerm) ? SearchType.number : SearchType.filter;
 
         string uri = string.Format("{0}?{1}={2}", baseUri, searchType.ToString(), searchTerm);
-        string jsonRes = await GetQueryAsync(uri);
+        string jsonRes;
+        jsonRes = await GetQueryAsync(uri);
+        
         if (jsonRes == null || jsonRes == "") return null;
 
         List<Song> collection = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Song>>(jsonRes);

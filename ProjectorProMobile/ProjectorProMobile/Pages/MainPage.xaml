@@ -6,11 +6,11 @@
              xmlns:pages="clr-namespace:ProjectorProMobile.Pages"
              mc:Ignorable="d"
              x:Class="ProjectorProMobile.MainPage"
-             BackgroundColor="#36382e">
-            <!--
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             android:TabbedPage.ToolbarPlacement="Bottom"
-             BarBackgroundColor="#CDD3D5">-->
+             BackgroundColor="white"
+             FlyoutBehavior="Disabled"
+            TabBarTitleColor="red"
+            NavBarIsVisible="False">
+           
     <Shell.Resources>
         <ResourceDictionary>
             <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="1,1">
@@ -27,19 +27,18 @@
             <Setter Property="Margin" Value="50,0"/>
         </Style>
     </Shell.Resources>
-
     <TabBar>
-        <Tab Title="Home">
+        <Tab Title="Home" Icon="search_icon.png">
             <ShellContent>
                 <pages:PageSearch/>
             </ShellContent>
         </Tab>
-        <Tab Title="Join">
+        <Tab Title="Join Session" Icon="add_icon.png">
             <ShellContent>
                 <pages:PageJoin/>
             </ShellContent>
         </Tab>
-        <Tab Title="Home">
+        <Tab Title="Settings" Icon="settings_icon.png">
             <ShellContent>
                 <pages:PageSettings/>
             </ShellContent>
