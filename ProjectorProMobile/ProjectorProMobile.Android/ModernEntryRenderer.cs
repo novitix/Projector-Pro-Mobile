@@ -28,7 +28,7 @@ namespace ProjectorProMobile.Droid
                 //gd.SetStroke(2, and.Color.LightGray);
                 this.Control.Background = gd;
 
-                this.Control.SetPaddingRelative(35, 0, 0, 0);
+                this.Control.SetPaddingRelative(35, 0, 35, 0);
             }
         }
     }

@@ -43,14 +43,13 @@ namespace ProjectorProMobile.Pages
 
         private async void ListResultsView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var selIndex = e.ItemIndex;
-            string msgTitle = string.Format("{0} ({1}) #{2}", searchItems.Collection[selIndex].Title, searchItems.Collection[selIndex].Key, searchItems.Collection[selIndex].Number);
-            await DisplayAlert(msgTitle, await searchItems.Collection[selIndex].SetBodyAsync(), "Close");
+            Song selSong = searchItems.Collection[e.ItemIndex];
+            string msgTitle = selSong.GetDisplayHeader();
+            await DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
         }
 
         private void SetStatusMessage(string message = "")
         {
-
             if (message != "")
             {
                 ListResultsView.ItemsSource = null;

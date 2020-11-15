@@ -11,31 +11,25 @@ namespace Songs {
         public string Title { get; set; }
         public int Number { get; set; }
         public string Key { get; set; }
-
-        public bool IsBodySet = false;
-
-        private string _body;
-        public string Body {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                _body = value;
-                IsBodySet = true;
-            }
-        }
-
+        public string Body { get; set; }
+        public bool IsBodySet { get { return !string.IsNullOrEmpty(Body); } }
 
 
         public Song() { }
 
         public async Task<string> SetBodyAsync()
         {
-            Querier querier = new Querier();
-            Body = await querier.GetBodyAsync(ID);
+            if (!IsBodySet)
+            {
+                Querier querier = new Querier();
+                Body = await querier.GetBodyAsync(ID);
+            }
             return Body;
+        }
+
+        public string GetDisplayHeader()
+        {
+            return string.Format("{0} ({1}) #{2}", Title, Key, Number);
         }
     }
 

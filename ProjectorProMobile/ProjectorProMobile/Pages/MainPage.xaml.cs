@@ -17,6 +17,7 @@ namespace ProjectorProMobile
         public MainPage()
         {
             InitializeComponent();
+            Xamarin.Essentials.DeviceDisplay.KeepScreenOn = true;
         }
     }
 }
