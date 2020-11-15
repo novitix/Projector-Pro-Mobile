@@ -81,7 +81,18 @@ using Xamarin;
 
         var keyValPair = Newtonsoft.Json.JsonConvert.DeserializeObject<IDictionary<string,string>>(jsonRes);
         string body = keyValPair.Values.First();
+        body = ParseSongBody(body);
+        return body;
+    }
 
+    private string ParseSongBody(string body)
+    {
+        // Some new lines were showing up as \r\n.
+        body = body.Replace("\\r\\n", Environment.NewLine);
+        body = body.Replace("\r\n", Environment.NewLine);
+        body = body.Replace("\\n\\n", Environment.NewLine);
+        body = body.Replace("\\n", Environment.NewLine);
+        body = body.Replace("\n", Environment.NewLine);
         return body;
     }
 }
