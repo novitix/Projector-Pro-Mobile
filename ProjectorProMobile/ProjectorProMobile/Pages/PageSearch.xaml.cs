@@ -45,7 +45,13 @@ namespace ProjectorProMobile.Pages
         {
             Song selSong = searchItems.Collection[e.ItemIndex];
             string msgTitle = selSong.GetDisplayHeader();
-            await DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
+            Task msgTask = DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
+            Console.WriteLine("ishost: " + SessionManager.IsHost.ToString());
+            if (SessionManager.IsHost)
+            {
+                SessionManager.UpdateSessionAsync(selSong.ID);
+            }
+            await msgTask;
         }
 
         private void SetStatusMessage(string message = "")

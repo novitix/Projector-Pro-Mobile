@@ -16,7 +16,7 @@
             <!-- Place new controls here -->
             <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="100">
                 <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Background="{StaticResource ButtonBackground}"/>
-                <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20" FontFamily="sans-serif" TextChanged="Search_TextChanged"  AbsoluteLayout.LayoutBounds="0.5,0.5,0.85,0.6" AbsoluteLayout.LayoutFlags="All" />
+                <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20" TextChanged="Search_TextChanged" AbsoluteLayout.LayoutBounds="0.5,0.5,0.85,0.6" AbsoluteLayout.LayoutFlags="All" />
             </AbsoluteLayout>
 
             <Grid>
