@@ -37,6 +37,7 @@ namespace ProjectorProMobile.Pages
             if (code.Length == 4)
             {
                 code4.Text = code.Substring(3, 1);
+                SessionManager.SessionCode = int.Parse(code);
                 await Navigation.PushAsync(new PageJoinFollow());
             }
         }

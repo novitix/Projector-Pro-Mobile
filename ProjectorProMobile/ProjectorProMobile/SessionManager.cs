@@ -39,5 +39,19 @@ namespace ProjectorProMobile
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpResponseMessage task = await client.PostAsync(updateEndPt, stringContent);
         }
+        
+        public static async Task<int> CheckSessionChanges(int id)
+        {
+            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
+            string changesEndPt = string.Format("http://{0}/api/session/get-session-changes?id={1}&code={2}", baseUrl, id, SessionCode);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(changesEndPt);
+            if (response.StatusCode == System.Net.HttpStatusCode.NotModified)
+            {
+                return id;
+            }
+            string contents = await response.Content.ReadAsStringAsync();
+            return int.Parse(contents);
+        }
     }
 }
