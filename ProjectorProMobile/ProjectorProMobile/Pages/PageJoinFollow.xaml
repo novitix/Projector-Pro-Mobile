@@ -1,15 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cc="clr-namespace:CustomControls"
              x:Class="ProjectorProMobile.Pages.PageJoinFollow">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LinearGradientBrush x:Key="TextBg" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#b8c5d6" Offset="0"/>
+                <GradientStop Color="#a39ba8" Offset="1"/>
+            </LinearGradientBrush>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Label x:Name="txtContent" Text="Waiting for host"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                   BackgroundColor="Transparent"/>
-            </Grid>
-        </StackLayout>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Red">
+            <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Background="{StaticResource TextBg}"/>
+            <cc:DisplayEditor x:Name="txtContent"
+                                      Text="Waiting for host"
+                                      AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                      AbsoluteLayout.LayoutFlags="All"
+                                      VerticalOptions="FillAndExpand" 
+                                      HorizontalOptions="FillAndExpand"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

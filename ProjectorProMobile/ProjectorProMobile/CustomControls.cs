@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
-namespace CustomEntry
+namespace CustomControls
 {
     public class ModernEntry : Entry
     {
@@ -12,6 +12,10 @@ namespace CustomEntry
     }
 
     public class PinEntry : Entry
+    {
+
+    }
+    public class DisplayEditor : Editor
     {
 
     }

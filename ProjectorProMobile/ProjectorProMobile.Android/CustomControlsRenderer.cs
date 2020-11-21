@@ -5,6 +5,7 @@ using ProjectorProMobile.Droid;
 using Android.Content;
 using Android.Graphics.Drawables;
 using and = Android.Graphics;
+using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(CustomControls.ModernEntry), typeof(ModernEntryRenderer))]
 [assembly: ExportRenderer(typeof(CustomControls.PinEntry), typeof(PinEntryRenderer))]
@@ -38,9 +39,7 @@ namespace ProjectorProMobile.Droid
 
     class PinEntryRenderer : EntryRenderer
     {
-        public PinEntryRenderer(Context context) : base(context)
-        {
-        }
+        public PinEntryRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
@@ -70,21 +69,19 @@ namespace ProjectorProMobile.Droid
         }
     }
 
-    class DisplayEditorRenderer : EditorRenderer {
+    class DisplayEditorRenderer : EditorRenderer
+    {
         public DisplayEditorRenderer(Context context) : base(context) { }
-
-        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            base.OnElementChanged(e);
+            base.OnElementPropertyChanged(sender, e);
             if (Control != null)
             {
                 Control.TextAlignment = Android.Views.TextAlignment.Center;
+                Control.Gravity = Android.Views.GravityFlags.Center;
                 Control.Background = null;
                 Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
-                Control.Gravity = Android.Views.GravityFlags.Center;
             }
         }
     }
-
-
 }
