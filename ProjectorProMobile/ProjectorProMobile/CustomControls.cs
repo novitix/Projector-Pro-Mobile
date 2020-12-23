@@ -15,7 +15,7 @@ namespace CustomControls
     {
 
     }
-    public class DisplayEditor : Editor
+    public class DisplayLabel : Label
     {
 
     }

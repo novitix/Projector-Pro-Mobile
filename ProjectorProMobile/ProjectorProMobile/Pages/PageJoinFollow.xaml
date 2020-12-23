@@ -14,12 +14,12 @@
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Red">
             <BoxView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Background="{StaticResource TextBg}"/>
-            <cc:DisplayEditor x:Name="txtContent"
-                                      Text="Waiting for host"
-                                      AbsoluteLayout.LayoutBounds="0,0,1,1"
-                                      AbsoluteLayout.LayoutFlags="All"
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <cc:DisplayLabel x:Name="txtContent"
+                                      Text="{Binding Body}"
                                       VerticalOptions="FillAndExpand" 
-                                      HorizontalOptions="FillAndExpand"/>
+                                      HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="18"/>
+                </ScrollView>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

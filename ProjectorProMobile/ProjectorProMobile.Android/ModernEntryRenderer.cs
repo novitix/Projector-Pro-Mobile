@@ -5,10 +5,12 @@ using ProjectorProMobile.Droid;
 using Android.Content;
 using Android.Graphics.Drawables;
 using and = Android.Graphics;
+using Android.Content.Res;
+using Android.Text.Method;
 
 [assembly: ExportRenderer(typeof(CustomControls.ModernEntry), typeof(ModernEntryRenderer))]
 [assembly: ExportRenderer(typeof(CustomControls.PinEntry), typeof(PinEntryRenderer))]
-[assembly: ExportRenderer(typeof(CustomControls.DisplayEditor), typeof(DisplayEditorRenderer))]
+[assembly: ExportRenderer(typeof(CustomControls.DisplayLabel), typeof(DisplayLabelRenderer))]
 namespace ProjectorProMobile.Droid
 {
     class ModernEntryRenderer : EntryRenderer
@@ -70,10 +72,10 @@ namespace ProjectorProMobile.Droid
         }
     }
 
-    class DisplayEditorRenderer : EditorRenderer {
-        public DisplayEditorRenderer(Context context) : base(context) { }
+    class DisplayLabelRenderer : LabelRenderer {
+        public DisplayLabelRenderer(Context context) : base(context) { }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
             base.OnElementChanged(e);
             if (Control != null)
@@ -82,6 +84,12 @@ namespace ProjectorProMobile.Droid
                 Control.Background = null;
                 Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
                 Control.Gravity = Android.Views.GravityFlags.Center;
+                //Control.Focusable = false;
+                //Control.FocusableInTouchMode = false;
+                //Control.Clickable = false;
+                //Control.LongClickable = false;
+                //Control.SetCursorVisible(false);
+                //Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Transparent));
             }
         }
     }

@@ -37,9 +37,18 @@ namespace ProjectorProMobile.Pages
             if (code.Length == 4)
             {
                 code4.Text = code.Substring(3, 1);
+                txtHiddenCode.TextChanged -= txtHiddenCode_TextChanged;
+                txtHiddenCode.Text = "";
+                txtHiddenCode.TextChanged += txtHiddenCode_TextChanged;
+                txtHiddenCode.Unfocus();
                 SessionManager.SessionCode = int.Parse(code);
                 await Navigation.PushAsync(new PageJoinFollow());
             }
+        }
+        
+        public void ResetHiddenCode()
+        {
+            txtHiddenCode.Text = "";
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

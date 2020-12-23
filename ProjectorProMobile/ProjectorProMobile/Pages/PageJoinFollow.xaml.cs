@@ -15,33 +15,47 @@ namespace ProjectorProMobile.Pages
     public partial class PageJoinFollow : ContentPage
     {
         int dispId = -1;
-        bool updating = true;
+        bool finishedUpdating = true;
+        Song currentSong;
         public PageJoinFollow()
         {
             InitializeComponent();
-            CheckUpdates();
+            currentSong = new Song();
+            txtContent.BindingContext = currentSong;
+
+            //Task.Factory.StartNew(() => CheckUpdates());
+            int updateInterval = 2; // check for updates every 2 seconds
+            Device.StartTimer(TimeSpan.FromSeconds(updateInterval), () =>
+            {
+                Task.Run(async () =>
+                {
+                    if (finishedUpdating)
+                    {
+                        await CheckUpdates();
+                    }
+                });
+                return true;
+            }); 
         }
+
+
 
         private async Task CheckUpdates()
         {
-            while (updating)
+            finishedUpdating = false;
+            int id = await SessionManager.CheckSessionChanges(dispId);
+            if (id != dispId)
             {
-                int id = await SessionManager.CheckSessionChanges(dispId);
-                if (id != dispId)
-                {
-                    dispId = id;
-                    await UpdateText();
-                }
-                Thread.Sleep(2000);
+                dispId = id;
+                await UpdateText();
             }
+            finishedUpdating = true;
         }
 
         private async Task UpdateText()
         {
-            Song currentSong = new Song();
             currentSong.ID = dispId;
             await currentSong.SetBodyAsync();
-            txtContent.Text = currentSong.Body;
         }
     }
 }
