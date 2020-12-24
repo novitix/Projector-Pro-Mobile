@@ -3,7 +3,7 @@
     "ProjectorProMobile": {
       "commandName": "Project",
       "sqlDebugging": false,
-      "nativeDebugging": true
+      "nativeDebugging": false
     }
   }
 }

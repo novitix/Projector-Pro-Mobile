@@ -61,6 +61,14 @@ namespace Songs {
         {
             return Collection.Select(x => x.Title).ToArray();
         }
+
+        public int Count
+        {
+            get
+            {
+                return Collection.Count;
+            }
+        }
     }
 
 

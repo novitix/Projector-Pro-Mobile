@@ -28,14 +28,22 @@ namespace ProjectorProMobile.Pages
             querier = new Querier();
             searchItems = await querier.GetSearchResultsAsync(((Entry)sender).Text);
 
-            if (searchItems != null)
+            if (searchItems == null)
             {
-                ListResultsView.ItemsSource = searchItems.GetTitleArray();
-                SetStatusMessage();
+                SetStatusMessage("Please check the server address in settings then try again.");
             }
             else
             {
-                SetStatusMessage("No results found.");
+                if (searchItems.Count > 0)
+                {
+                    ListResultsView.ItemsSource = searchItems.GetTitleArray();
+                    SetStatusMessage();
+                }
+                else
+                {
+                    SetStatusMessage("No results found.");
+                }
+                
             }
 
         }
