@@ -16,14 +16,21 @@ namespace ProjectorProMobile.Pages
     {
         int dispId = -1;
         bool finishedUpdating = true;
+        bool checkUpdates;
         Song currentSong;
         public PageJoinFollow()
         {
             InitializeComponent();
             currentSong = new Song();
             txtContent.BindingContext = currentSong;
+            currentSong.Body = "Waiting for connection...";
 
-            //Task.Factory.StartNew(() => CheckUpdates());
+            BeginUpdateChecks();
+        }
+
+        public void BeginUpdateChecks()
+        {
+            checkUpdates = true;
             int updateInterval = 2; // check for updates every 2 seconds
             Device.StartTimer(TimeSpan.FromSeconds(updateInterval), () =>
             {
@@ -34,11 +41,15 @@ namespace ProjectorProMobile.Pages
                         await CheckUpdates();
                     }
                 });
-                return true;
-            }); 
+                return checkUpdates;
+            });
         }
 
-
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            checkUpdates = false;
+        }
 
         private async Task CheckUpdates()
         {

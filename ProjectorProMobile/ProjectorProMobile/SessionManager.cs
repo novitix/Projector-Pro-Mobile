@@ -39,7 +39,7 @@ namespace ProjectorProMobile
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             HttpResponseMessage task = await client.PostAsync(updateEndPt, stringContent);
         }
-        
+
         public static async Task<int> CheckSessionChanges(int id)
         {
             string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
@@ -50,8 +50,19 @@ namespace ProjectorProMobile
             {
                 return id;
             }
+
             string contents = await response.Content.ReadAsStringAsync();
             return int.Parse(contents);
+        }
+
+        public static async Task<bool> CheckSessionExists()
+        {
+            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
+            string endPt = string.Format("http://{0}/api/session/get-session-exists?code={1}", baseUrl, SessionCode);
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(endPt);
+            string result = await response.Content.ReadAsStringAsync();
+            return (result == "true");
         }
     }
 }

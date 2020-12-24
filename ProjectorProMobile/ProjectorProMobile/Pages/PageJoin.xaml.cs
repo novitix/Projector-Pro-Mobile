@@ -37,18 +37,32 @@ namespace ProjectorProMobile.Pages
             if (code.Length == 4)
             {
                 code4.Text = code.Substring(3, 1);
-                txtHiddenCode.TextChanged -= txtHiddenCode_TextChanged;
-                txtHiddenCode.Text = "";
-                txtHiddenCode.TextChanged += txtHiddenCode_TextChanged;
                 txtHiddenCode.Unfocus();
                 SessionManager.SessionCode = int.Parse(code);
-                await Navigation.PushAsync(new PageJoinFollow());
+                
+                if (await SessionManager.CheckSessionExists())
+                {
+                    Console.WriteLine("session exists");
+                    await Navigation.PushAsync(new PageJoinFollow());
+                }
+                else
+                {
+                    Console.WriteLine("session does not exist");
+                    await DisplayAlert("Join Error", "The session does not exist. Please enter a valid session code and try again.", "Close");
+                    clearCode();
+                }
             }
         }
-        
-        public void ResetHiddenCode()
+
+        private void clearCode()
         {
+            txtHiddenCode.TextChanged -= txtHiddenCode_TextChanged;
             txtHiddenCode.Text = "";
+            txtHiddenCode.TextChanged += txtHiddenCode_TextChanged;
+            code1.Text = "";
+            code2.Text = "";
+            code3.Text = "";
+            code4.Text = "";
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
