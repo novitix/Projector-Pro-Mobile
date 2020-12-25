@@ -51,7 +51,7 @@ using Xamarin;
             jsonRes = await client.GetStringAsync(uri);
         }
         catch (Exception ex)
-        when (ex is System.Net.WebException || ex is System.IO.IOException || ex is OperationCanceledException)
+        when (ex is System.Net.WebException)
         {
             return null;
         }

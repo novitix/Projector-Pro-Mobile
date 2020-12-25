@@ -42,12 +42,11 @@ namespace ProjectorProMobile.Pages
                 
                 if (await SessionManager.CheckSessionExists())
                 {
-                    Console.WriteLine("session exists");
+                    SessionManager.Hosting = SessionManager.HostStatus.Follow;
                     await Navigation.PushAsync(new PageJoinFollow());
                 }
                 else
                 {
-                    Console.WriteLine("session does not exist");
                     await DisplayAlert("Join Error", "The session does not exist. Please enter a valid session code and try again.", "Close");
                     clearCode();
                 }

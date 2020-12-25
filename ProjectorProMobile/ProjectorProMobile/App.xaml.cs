@@ -15,14 +15,17 @@ namespace ProjectorProMobile
 
         protected override void OnStart()
         {
+            
         }
 
         protected override void OnSleep()
         {
+            SessionManager.StopUpdateChecks();
         }
 
         protected override void OnResume()
         {
+            SessionManager.BeginUpdateChecks();
         }
     }
 }

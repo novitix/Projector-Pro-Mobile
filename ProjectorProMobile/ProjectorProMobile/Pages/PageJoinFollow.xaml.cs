@@ -14,9 +14,6 @@ namespace ProjectorProMobile.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageJoinFollow : ContentPage
     {
-        int dispId = -1;
-        bool finishedUpdating = true;
-        bool checkUpdates;
         Song currentSong;
         public PageJoinFollow()
         {
@@ -24,48 +21,27 @@ namespace ProjectorProMobile.Pages
             currentSong = new Song();
             txtContent.BindingContext = currentSong;
             currentSong.Body = "Waiting for connection...";
-
-            BeginUpdateChecks();
+            SessionManager.IdChanged += UpdateText;
         }
 
-        public void BeginUpdateChecks()
-        {
-            checkUpdates = true;
-            int updateInterval = 2; // check for updates every 2 seconds
-            Device.StartTimer(TimeSpan.FromSeconds(updateInterval), () =>
-            {
-                Task.Run(async () =>
-                {
-                    if (finishedUpdating)
-                    {
-                        await CheckUpdates();
-                    }
-                });
-                return checkUpdates;
-            });
-        }
+        
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            checkUpdates = false;
+            SessionManager.StopUpdateChecks();
         }
 
-        private async Task CheckUpdates()
+        protected override void OnAppearing()
         {
-            finishedUpdating = false;
-            int id = await SessionManager.CheckSessionChanges(dispId);
-            if (id != dispId)
-            {
-                dispId = id;
-                await UpdateText();
-            }
-            finishedUpdating = true;
+            base.OnAppearing();
+            SessionManager.BeginUpdateChecks();
         }
 
-        private async Task UpdateText()
+
+        private async void UpdateText(int newId)
         {
-            currentSong.ID = dispId;
+            currentSong.ID = newId;
             await currentSong.SetBodyAsync();
         }
     }

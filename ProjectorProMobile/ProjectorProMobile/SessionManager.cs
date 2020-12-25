@@ -5,31 +5,38 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace ProjectorProMobile
 {
     public static class SessionManager
     {
         public static int SessionCode = 0000;
-        public static bool IsHost;
+        public enum HostStatus
+        {
+            Solo,
+            Follow,
+            Host
+        }
+        public static HostStatus Hosting = HostStatus.Solo;
         public static async Task<int> CreateSessionAsync()
         {
-            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
-            string createEndPt = string.Format("http://{0}/api/session/create-session", baseUrl);
+            string createEndPt = string.Format("http://{0}/api/session/create-session", getBaseUrl());
             HttpClient client = new HttpClient();
             HttpResponseMessage task = await client.PostAsync(createEndPt, null);
 
-            string lastSeshEndPt = string.Format("http://{0}/api/session/last-session-id", baseUrl);
-            string res = await client.GetStringAsync(lastSeshEndPt);
-            SessionCode = int.Parse(res);
-            IsHost = true;
+
+            string relativeUrl = "/api/session/last-session-id";
+            var result = await httpGet(relativeUrl, null);
+
+            SessionCode = int.Parse(await result.Content.ReadAsStringAsync());
+            Hosting = HostStatus.Host;
             return SessionCode;
         }
 
         public static async void UpdateSessionAsync(int id)
         {
-            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
-            string updateEndPt = string.Format("http://{0}/api/session/update-session", baseUrl);
+            string updateEndPt = string.Format("http://{0}/api/session/update-session", getBaseUrl());
             HttpClient client = new HttpClient();
             string jsonData = JsonConvert.SerializeObject(new
             {
@@ -42,10 +49,14 @@ namespace ProjectorProMobile
 
         public static async Task<int> CheckSessionChanges(int id)
         {
-            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
-            string changesEndPt = string.Format("http://{0}/api/session/get-session-changes?id={1}&code={2}", baseUrl, id, SessionCode);
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(changesEndPt);
+            string relativeUrl = "/api/session/get-session-changes";
+            var paramsList = new List<KeyValuePair<string, string>> 
+            {
+                new KeyValuePair<string, string>("id", id.ToString()),
+                new KeyValuePair<string, string>("code", SessionCode.ToString())
+            };
+
+            HttpResponseMessage response = await httpGet(relativeUrl, paramsList);
             if (response.StatusCode == System.Net.HttpStatusCode.NotModified)
             {
                 return id;
@@ -57,12 +68,84 @@ namespace ProjectorProMobile
 
         public static async Task<bool> CheckSessionExists()
         {
-            string baseUrl = Preferences.Get("serverAddress", "projector-pro-server.herokuapp.com");
-            string endPt = string.Format("http://{0}/api/session/get-session-exists?code={1}", baseUrl, SessionCode);
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(endPt);
+            string relativeUrl = "/api/session/get-session-exists";
+            var paramsList = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("code", SessionCode.ToString()) };
+
+            var response = await httpGet(relativeUrl, paramsList);
             string result = await response.Content.ReadAsStringAsync();
             return (result == "true");
+        }
+
+        private static async Task<HttpResponseMessage> httpGet(string relativeUrl, List<KeyValuePair<string, string>> paramsList)
+        {
+            string endPt = "http://" + getBaseUrl() + relativeUrl;
+            if (paramsList != null)
+            {
+                for (int i = 0; i < paramsList.Count; i++)
+                {
+                    endPt += (i == 0) ? "?" : "&";
+                    endPt += paramsList[i].Key + "=" + paramsList[i].Value;
+                }
+            }
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(endPt);
+            return response;
+        }
+
+        private static string getBaseUrl()
+        {
+            const string defaultUrl = "projector-pro-server.herokuapp.com";
+            string url = Preferences.Get("serverAddress", defaultUrl);
+            return url;
+        }
+
+        // Watch for updates
+        public delegate void IdChangedHandler(int newId);
+        public static event IdChangedHandler IdChanged;
+
+        static bool finishedUpdating = true;
+        static bool checkUpdates;
+        static int _id;
+        static int id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value != _id)
+                {
+                    _id = value;
+                    IdChanged(value);
+                }
+            }
+        }
+        public static void BeginUpdateChecks()
+        {
+            if (Hosting != HostStatus.Follow) return;
+
+            checkUpdates = true;
+            int updateInterval = 2; // check for updates every 2 seconds
+            Device.StartTimer(TimeSpan.FromSeconds(updateInterval), () =>
+            {
+                _ = Task.Run(async () =>
+                  {
+                      if (finishedUpdating)
+                      {
+                          finishedUpdating = false;
+                          id = await CheckSessionChanges(id);
+                          finishedUpdating = true;
+                      }
+                  });
+                return checkUpdates;
+            });
+        }
+
+        public static void StopUpdateChecks()
+        {
+            checkUpdates = false;
         }
     }
 }

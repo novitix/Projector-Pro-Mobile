@@ -24,6 +24,11 @@ namespace ProjectorProMobile.Pages
         Querier querier;
         private async void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                SetStatusMessage();
+                return;
+            }
             SetStatusMessage("Searching...");
             querier = new Querier();
             searchItems = await querier.GetSearchResultsAsync(((Entry)sender).Text);
@@ -54,7 +59,7 @@ namespace ProjectorProMobile.Pages
             Song selSong = searchItems.Collection[e.ItemIndex];
             string msgTitle = selSong.GetDisplayHeader();
             Task msgTask = DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
-            if (SessionManager.IsHost)
+            if (SessionManager.Hosting == SessionManager.HostStatus.Host)
             {
                 SessionManager.UpdateSessionAsync(selSong.ID);
             }
