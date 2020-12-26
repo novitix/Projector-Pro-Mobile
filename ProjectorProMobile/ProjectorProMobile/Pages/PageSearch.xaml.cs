@@ -57,13 +57,15 @@ namespace ProjectorProMobile.Pages
         private async void ListResultsView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             Song selSong = searchItems.Collection[e.ItemIndex];
-            string msgTitle = selSong.GetDisplayHeader();
-            Task msgTask = DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
+            //string msgTitle = selSong.GetDisplayHeader();
+            //Task msgTask = DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
+            Task pushNavigation = Navigation.PushAsync(new PageDisplay(selSong.ID));
+
             if (SessionManager.Hosting == SessionManager.HostStatus.Host)
             {
                 SessionManager.UpdateSessionAsync(selSong.ID);
             }
-            await msgTask;
+            await pushNavigation;
         }
 
         private void SetStatusMessage(string message = "")

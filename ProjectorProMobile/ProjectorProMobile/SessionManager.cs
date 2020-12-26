@@ -107,7 +107,7 @@ namespace ProjectorProMobile
         static bool finishedUpdating = true;
         static bool checkUpdates;
         static int _id;
-        static int id
+        static int Id
         {
             get
             {
@@ -135,7 +135,7 @@ namespace ProjectorProMobile
                       if (finishedUpdating)
                       {
                           finishedUpdating = false;
-                          id = await CheckSessionChanges(id);
+                          Id = await CheckSessionChanges(Id);
                           finishedUpdating = true;
                       }
                   });

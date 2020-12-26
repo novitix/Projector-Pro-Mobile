@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cc="clr-namespace:CustomControls"
-             x:Class="ProjectorProMobile.Pages.PageJoinFollow">
+             x:Class="ProjectorProMobile.Pages.PageDisplay">
     <ContentPage.Resources>
         <ResourceDictionary>
             <LinearGradientBrush x:Key="TextBg" StartPoint="0,0" EndPoint="1,1">

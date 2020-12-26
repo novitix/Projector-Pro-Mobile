@@ -12,16 +12,23 @@ using Xamarin.Forms.Xaml;
 namespace ProjectorProMobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageJoinFollow : ContentPage
+    public partial class PageDisplay : ContentPage
     {
         Song currentSong;
-        public PageJoinFollow()
+        public PageDisplay(int songId = -1)
         {
             InitializeComponent();
             currentSong = new Song();
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                SessionManager.IdChanged += UpdateText;
+            }
+            else
+            {
+                UpdateText(songId);
+            }
             txtContent.BindingContext = currentSong;
             currentSong.Body = "Waiting for connection...";
-            SessionManager.IdChanged += UpdateText;
         }
 
         
@@ -35,7 +42,15 @@ namespace ProjectorProMobile.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SessionManager.BeginUpdateChecks();
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                SessionManager.BeginUpdateChecks();
+            }
+            else
+            {
+                
+            }
+            
         }
 
 

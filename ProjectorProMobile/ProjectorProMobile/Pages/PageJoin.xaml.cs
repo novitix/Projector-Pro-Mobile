@@ -43,7 +43,7 @@ namespace ProjectorProMobile.Pages
                 if (await SessionManager.CheckSessionExists())
                 {
                     SessionManager.Hosting = SessionManager.HostStatus.Follow;
-                    await Navigation.PushAsync(new PageJoinFollow());
+                    await Navigation.PushAsync(new PageDisplay());
                 }
                 else
                 {

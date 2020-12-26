@@ -31,6 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\PageDisplay.xaml.cs">
+      <DependentUpon>PageDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\PageSearch.xaml.cs">
       <DependentUpon>PageSearch.xaml</DependentUpon>
     </Compile>
@@ -43,7 +46,7 @@
     <EmbeddedResource Update="Pages\PageJoin.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\PageJoinFollow.xaml">
+    <EmbeddedResource Update="Pages\PageDisplay.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\PageSearch.xaml">
