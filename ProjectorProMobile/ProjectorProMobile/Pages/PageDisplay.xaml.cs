@@ -56,8 +56,12 @@ namespace ProjectorProMobile.Pages
 
         private async void UpdateText(int newId)
         {
-            currentSong.ID = newId;
-            await currentSong.SetBodyAsync();
+            if (newId != -1)
+            {
+                currentSong.ID = newId;
+                await currentSong.SetBodyAsync();
+            }
+            
         }
     }
 }
