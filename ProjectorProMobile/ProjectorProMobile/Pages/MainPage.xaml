@@ -33,7 +33,7 @@
                 <pages:PageSearch/>
             </ShellContent>
         </Tab>
-        <Tab Title="Join Session" Icon="add_icon.png">
+        <Tab Title="Session" Icon="add_icon.png">
             <ShellContent>
                 <pages:PageJoin/>
             </ShellContent>

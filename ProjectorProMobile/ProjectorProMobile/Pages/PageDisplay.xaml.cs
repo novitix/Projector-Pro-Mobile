@@ -44,6 +44,7 @@ namespace ProjectorProMobile.Pages
             base.OnAppearing();
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
+
                 SessionManager.BeginUpdateChecks();
             }
             else
@@ -62,6 +63,27 @@ namespace ProjectorProMobile.Pages
                 await currentSong.SetBodyAsync();
             }
             
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                return true;
+            }
+            else
+            {
+                return base.OnBackButtonPressed();
+            }
+        }
+
+        private void btnExitDisplay_Clicked(object sender, EventArgs e)
+        {
+            SessionManager.ResetId();
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                SessionManager.Hosting = SessionManager.HostStatus.Solo;
+            }
+            Navigation.PopAsync();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using Songs;
 using System.Timers;
 namespace ProjectorProMobile
@@ -16,8 +17,20 @@ namespace ProjectorProMobile
     {
         public MainPage()
         {
+            SetSessionManager();
             InitializeComponent();
             Xamarin.Essentials.DeviceDisplay.KeepScreenOn = true;
+        }
+
+        private void SetSessionManager()
+        {
+            string strSeshCode = Preferences.Get("sessionCode", "0000");
+            SessionManager.SessionCode = int.Parse(strSeshCode);
+            SessionManager.Hosting = (SessionManager.HostStatus)Preferences.Get("hostStatus", 0);
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                SessionManager.Hosting = SessionManager.HostStatus.Solo;
+            }
         }
     }
 }

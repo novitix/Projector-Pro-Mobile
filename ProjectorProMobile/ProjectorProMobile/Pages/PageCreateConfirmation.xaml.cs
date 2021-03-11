@@ -21,5 +21,15 @@ namespace ProjectorProMobile.Pages
             code3.Text = strCode.Substring(2, 1);
             code4.Text = strCode.Substring(3, 1);
         }
+
+        private void btnExitSesh_Clicked(object sender, EventArgs e)
+        {
+            SessionManager.Hosting = SessionManager.HostStatus.Solo;
+            Navigation.PopAsync();
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

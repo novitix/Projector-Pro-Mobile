@@ -26,6 +26,7 @@
                 <cc:PinEntry x:Name="code4"/>
             </StackLayout>
             <Label Text="As the host, songs displayed on this device will be mirrored to joined devices." HorizontalTextAlignment="Center" Margin="40,30,40,0"/>
+            <Button x:Name="btnExitSesh" Text="Exit Session" VerticalOptions="EndAndExpand" Clicked="btnExitSesh_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

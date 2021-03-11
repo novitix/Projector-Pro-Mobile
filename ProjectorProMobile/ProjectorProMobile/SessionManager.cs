@@ -11,14 +11,38 @@ namespace ProjectorProMobile
 {
     public static class SessionManager
     {
-        public static int SessionCode = 0000;
+        private static int _sessionCode = 0000;
+        public static int SessionCode
+        {
+            get
+            {
+                return _sessionCode;
+            }
+            set
+            {
+                _sessionCode = value;
+                Preferences.Set("sessionCode", _sessionCode.ToString());
+            }
+        }
         public enum HostStatus
         {
             Solo,
             Follow,
             Host
         }
-        public static HostStatus Hosting = HostStatus.Solo;
+        private static HostStatus _hosting = HostStatus.Solo;
+        public static HostStatus Hosting
+        {
+            get
+            {
+                return _hosting;
+            }
+            set
+            {
+                _hosting = value;
+                Preferences.Set("hostStatus", (int)_hosting);
+            }
+        }
         public static async Task<int> CreateSessionAsync()
         {
             string createEndPt = string.Format("http://{0}/api/session/create-session", getBaseUrl());
@@ -135,7 +159,10 @@ namespace ProjectorProMobile
                       if (finishedUpdating)
                       {
                           finishedUpdating = false;
-                          Id = await CheckSessionChanges(Id);
+                          if (checkUpdates)
+                          {
+                              Id = await CheckSessionChanges(Id);
+                          }
                           finishedUpdating = true;
                       }
                   });
@@ -146,6 +173,11 @@ namespace ProjectorProMobile
         public static void StopUpdateChecks()
         {
             checkUpdates = false;
+        }
+
+        public static void ResetId()
+        {
+            _id = default(int);
         }
     }
 }

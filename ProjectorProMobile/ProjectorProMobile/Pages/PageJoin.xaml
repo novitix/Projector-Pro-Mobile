@@ -28,7 +28,8 @@
                 <cc:PinEntry x:Name="code3"/>
                 <cc:PinEntry x:Name="code4"/>
             </StackLayout>
-            <ImageButton x:Name="btnCreateSesh" Source="create_icon.png" WidthRequest="50" HeightRequest="50" CornerRadius="25" Padding="12" Margin="8" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="#b8c5d6" Clicked="btnCreateSesh_Clicked"/>
+            <ImageButton x:Name="btnCreateSesh" Source="create_icon.png" WidthRequest="50" HeightRequest="50" CornerRadius="25" Padding="12" Margin="8"
+                         HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="#b8c5d6" Clicked="btnCreateSesh_Clicked"/>
             <Entry x:Name="txtHiddenCode" BackgroundColor="Transparent" WidthRequest="0.0000001" HeightRequest="0.0000001" HorizontalOptions="End" TextChanged="txtHiddenCode_TextChanged" Keyboard="Numeric">
                 <Entry.Behaviors>
                     <cc:NumericValidationBehavior/>

@@ -18,6 +18,16 @@ namespace ProjectorProMobile.Pages
             InitializeComponent();
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            ClearCode();
+            if (SessionManager.Hosting == SessionManager.HostStatus.Host)
+            {
+                await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
+            }
+        }
+
         async private void btnCreateSesh_Clicked(object sender, EventArgs e)
         {
             await SessionManager.CreateSessionAsync();
@@ -48,12 +58,12 @@ namespace ProjectorProMobile.Pages
                 else
                 {
                     await DisplayAlert("Join Error", "The session does not exist. Please enter a valid session code and try again.", "Close");
-                    clearCode();
+                    ClearCode();
                 }
             }
         }
 
-        private void clearCode()
+        private void ClearCode()
         {
             txtHiddenCode.TextChanged -= txtHiddenCode_TextChanged;
             txtHiddenCode.Text = "";
