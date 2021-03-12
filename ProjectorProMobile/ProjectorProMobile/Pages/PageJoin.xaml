@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              x:Class="ProjectorProMobile.Pages.PageJoin">
     <ContentPage.Resources>
@@ -18,7 +20,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtTitle" Text="Enter Session Code" FontSize="55" HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
+            <Label x:Name="txtTitle" Text="Enter Sessions Code" FontSize="55" HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
