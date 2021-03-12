@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(CustomControls.ModernEntry), typeof(ModernEntryRenderer))]
 [assembly: ExportRenderer(typeof(CustomControls.PinEntry), typeof(PinEntryRenderer))]
-[assembly: ExportRenderer(typeof(CustomControls.DisplayEditor), typeof(DisplayEditorRenderer))]
+//[assembly: ExportRenderer(typeof(CustomControls.DisplayEditor), typeof(DisplayEditorRenderer))]
 namespace ProjectorProMobile.Droid
 {
     class ModernEntryRenderer : EntryRenderer
@@ -69,19 +69,19 @@ namespace ProjectorProMobile.Droid
         }
     }
 
-    class DisplayEditorRenderer : EditorRenderer
-    {
-        public DisplayEditorRenderer(Context context) : base(context) { }
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            base.OnElementPropertyChanged(sender, e);
-            if (Control != null)
-            {
-                Control.TextAlignment = Android.Views.TextAlignment.Center;
-                Control.Gravity = Android.Views.GravityFlags.Center;
-                Control.Background = null;
-                Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
-            }
-        }
-    }
+    //class DisplayEditorRenderer : EditorRenderer
+    //{
+    //    public DisplayEditorRenderer(Context context) : base(context) { }
+    //    protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+    //    {
+    //        base.OnElementPropertyChanged(sender, e);
+    //        if (Control != null)
+    //        {
+    //            Control.TextAlignment = Android.Views.TextAlignment.Center;
+    //            Control.Gravity = Android.Views.GravityFlags.Center;
+    //            Control.Background = null;
+    //            Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
+    //        }
+    //    }
+    //}
 }

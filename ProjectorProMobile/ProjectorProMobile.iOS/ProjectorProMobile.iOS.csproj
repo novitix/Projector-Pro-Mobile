@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0ED5E4A2-BB64-45D8-80DD-75F07E1FEDDD}</ProjectGuid>
+    <ProjectGuid>{E1A3B8AB-92B2-430E-9AF7-220268EF7C8A}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
@@ -129,13 +129,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\ProjectorProMobile\ProjectorProMobile.csproj">
-      <Project>{5F9D4491-89DC-4071-9590-66638A903C19}</Project>
+      <Project>{7A175B42-1C8B-4151-92D5-2D1C14DE2C04}</Project>
       <Name>ProjectorProMobile</Name>
     </ProjectReference>
   </ItemGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties info_1plist__JsonSchema="https://beaujs.com/schema.json" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>

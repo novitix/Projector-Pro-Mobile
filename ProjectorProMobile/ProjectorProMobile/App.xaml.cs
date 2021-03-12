@@ -10,12 +10,12 @@ namespace ProjectorProMobile
         {
             Device.SetFlags(new[] { "Brush_Experimental" });
             InitializeComponent();
+
             MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
-            
         }
 
         protected override void OnSleep()

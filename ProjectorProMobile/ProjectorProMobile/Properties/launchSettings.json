@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "ProjectorProMobile": {
-      "commandName": "Project",
-      "sqlDebugging": false,
-      "nativeDebugging": false
-    }
-  }
-}
