@@ -37,7 +37,7 @@ namespace ProjectorProMobile.Pages
 
             if (searchItems == null)
             {
-                SetStatusMessage("Please check the server address in settings then try again.");
+                SetStatusMessage("Please check your internet connection and/or the server address then try again.");
             }
             else
             {
@@ -65,7 +65,11 @@ namespace ProjectorProMobile.Pages
 
             if (SessionManager.Hosting == SessionManager.HostStatus.Host)
             {
-                SessionManager.UpdateSessionAsync(selSong.ID);
+                bool result = await SessionManager.UpdateSessionAsync(selSong.ID);
+                if (result == false)
+                {
+                    await DisplayAlert("Error 2", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+                }
             }
             await pushNavigation;
         }

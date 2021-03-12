@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Linq;
 using Xamarin.Essentials;
 using Xamarin;
+using Xamarin.Forms;
 
     class Querier
 {
@@ -36,8 +37,8 @@ using Xamarin;
         string uri = string.Format("{0}?{1}={2}", baseUri, searchType.ToString(), searchTerm);
         string jsonRes;
         jsonRes = await GetQueryAsync(uri);
-        
-        if (jsonRes == null || jsonRes == "") return null;
+
+        if (string.IsNullOrWhiteSpace(jsonRes)) return null;
 
         List<Song> collection = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Song>>(jsonRes);
         return new SongCollection(collection);
@@ -50,8 +51,7 @@ using Xamarin;
         {
             jsonRes = await client.GetStringAsync(uri);
         }
-        catch (Exception ex)
-        when (ex is System.Net.WebException)
+        catch (Exception)
         {
             return null;
         }
@@ -68,16 +68,8 @@ using Xamarin;
     {
         HttpClient client = new HttpClient();
         string uri = string.Format("{0}?id={1}", baseUri, id.ToString());
-        string jsonRes;
-
-        try
-        {
-            jsonRes = await client.GetStringAsync(uri);
-        }
-        catch (System.Net.WebException)
-        {
-            return null;
-        }
+        string jsonRes = await GetQueryAsync(uri);
+        if (string.IsNullOrWhiteSpace(jsonRes)) return null;
 
         var keyValPair = Newtonsoft.Json.JsonConvert.DeserializeObject<IDictionary<string,string>>(jsonRes);
         string body = keyValPair.Values.First();

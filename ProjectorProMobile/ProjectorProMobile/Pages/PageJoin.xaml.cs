@@ -30,8 +30,16 @@ namespace ProjectorProMobile.Pages
 
         async private void btnCreateSesh_Clicked(object sender, EventArgs e)
         {
-            await SessionManager.CreateSessionAsync();
-            await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
+            
+            int? res = await SessionManager.CreateSessionAsync();
+            if (res == null)
+            {
+                await DisplayAlert("Error 1", "Unable to connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+            }
+            else
+            {
+                await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
+            }
         }
 
         async private void txtHiddenCode_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,16 +57,25 @@ namespace ProjectorProMobile.Pages
                 code4.Text = code.Substring(3, 1);
                 txtHiddenCode.Unfocus();
                 SessionManager.SessionCode = int.Parse(code);
-                
-                if (await SessionManager.CheckSessionExists())
+
+                bool? sessionExists = await SessionManager.CheckSessionExists();
+                if(sessionExists == null)
                 {
-                    SessionManager.Hosting = SessionManager.HostStatus.Follow;
-                    await Navigation.PushAsync(new PageDisplay());
+                    await DisplayAlert("Error 3", "Unable to connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+                    ClearCode();
                 }
                 else
                 {
-                    await DisplayAlert("Join Error", "The session does not exist. Please enter a valid session code and try again.", "Close");
-                    ClearCode();
+                    if ((bool)sessionExists)
+                    {
+                        SessionManager.Hosting = SessionManager.HostStatus.Follow;
+                        await Navigation.PushAsync(new PageDisplay());
+                    }
+                    else
+                    {
+                        await DisplayAlert("Join Error", "The session does not exist. Please enter a valid session code and try again.", "Close");
+                        ClearCode();
+                    }
                 }
             }
         }

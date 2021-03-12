@@ -62,7 +62,12 @@ namespace ProjectorProMobile.Pages
             if (newId != -1)
             {
                 currentSong.ID = newId;
-                await currentSong.SetBodyAsync();
+                string res = await currentSong.SetBodyAsync();
+                if (res == null)
+                {
+                    await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+                    ExitDisplay();
+                }
             }
             
         }
@@ -79,6 +84,11 @@ namespace ProjectorProMobile.Pages
         }
 
         private void btnExitDisplay_Clicked(object sender, EventArgs e)
+        {
+            ExitDisplay();
+        }
+
+        private void ExitDisplay()
         {
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {

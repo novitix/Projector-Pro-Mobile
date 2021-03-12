@@ -47,22 +47,30 @@ namespace ProjectorProMobile
                 Preferences.Set("hostStatus", (int)_hosting);
             }
         }
-        public static async Task<int> CreateSessionAsync()
+        public static async Task<int?> CreateSessionAsync()
         {
             string createEndPt = string.Format("http://{0}/api/session/create-session", getBaseUrl());
             HttpClient client = new HttpClient();
-            HttpResponseMessage task = await client.PostAsync(createEndPt, null);
+            try
+            {
+                HttpResponseMessage task = await client.PostAsync(createEndPt, null);
+
+                string relativeUrl = "/api/session/last-session-id";
+                var result = await httpGet(relativeUrl, null);
+
+                SessionCode = int.Parse(await result.Content.ReadAsStringAsync());
+                Hosting = HostStatus.Host;
+                return SessionCode;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
 
 
-            string relativeUrl = "/api/session/last-session-id";
-            var result = await httpGet(relativeUrl, null);
-
-            SessionCode = int.Parse(await result.Content.ReadAsStringAsync());
-            Hosting = HostStatus.Host;
-            return SessionCode;
         }
 
-        public static async void UpdateSessionAsync(int id)
+        public static async Task<bool> UpdateSessionAsync(int id)
         {
             string updateEndPt = string.Format("http://{0}/api/session/update-session", getBaseUrl());
             HttpClient client = new HttpClient();
@@ -72,10 +80,18 @@ namespace ProjectorProMobile
                 songId = id
             });
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpResponseMessage task = await client.PostAsync(updateEndPt, stringContent);
+            try
+            {
+                _ = await client.PostAsync(updateEndPt, stringContent);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public static async Task<int> CheckSessionChanges(int id)
+        public static async Task<int?> CheckSessionChanges(int id)
         {
             string relativeUrl = "/api/session/get-session-changes";
             var paramsList = new List<KeyValuePair<string, string>> 
@@ -84,24 +100,40 @@ namespace ProjectorProMobile
                 new KeyValuePair<string, string>("code", SessionCode.ToString())
             };
 
-            HttpResponseMessage response = await httpGet(relativeUrl, paramsList);
-            if (response.StatusCode == System.Net.HttpStatusCode.NotModified)
+            try
             {
-                return id;
+                HttpResponseMessage response = await httpGet(relativeUrl, paramsList);
+                if (response.StatusCode == System.Net.HttpStatusCode.NotModified)
+                {
+                    return id;
+                }
+
+                string contents = await response.Content.ReadAsStringAsync();
+                return int.Parse(contents);
+            }
+            catch(Exception)
+            {
+                return null;
             }
 
-            string contents = await response.Content.ReadAsStringAsync();
-            return int.Parse(contents);
+            
         }
 
-        public static async Task<bool> CheckSessionExists()
+        public static async Task<bool?> CheckSessionExists()
         {
             string relativeUrl = "/api/session/get-session-exists";
             var paramsList = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("code", SessionCode.ToString()) };
 
-            var response = await httpGet(relativeUrl, paramsList);
-            string result = await response.Content.ReadAsStringAsync();
-            return (result == "true");
+            try
+            {
+                var response = await httpGet(relativeUrl, paramsList);
+                string result = await response.Content.ReadAsStringAsync();
+                return (result == "true");
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static async Task<HttpResponseMessage> httpGet(string relativeUrl, List<KeyValuePair<string, string>> paramsList)
@@ -165,7 +197,15 @@ namespace ProjectorProMobile
                           finishedUpdating = false;
                           if (checkUpdates)
                           {
-                              Id = await CheckSessionChanges(Id);
+                              int? newId = await CheckSessionChanges(Id);
+                              if (newId != null)
+                              {
+                                  Id = (int)newId;
+                              }
+                              else
+                              {
+                                  //error; don't do anything and allow updates to continue
+                              }
                           }
                           finishedUpdating = true;
                       }
