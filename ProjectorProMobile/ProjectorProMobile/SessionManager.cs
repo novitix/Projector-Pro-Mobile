@@ -39,6 +39,10 @@ namespace ProjectorProMobile
             }
             set
             {
+                if (value == HostStatus.Solo && _hosting == HostStatus.Follow)
+                {
+                    ResetId();
+                }
                 _hosting = value;
                 Preferences.Set("hostStatus", (int)_hosting);
             }
@@ -175,7 +179,7 @@ namespace ProjectorProMobile
             checkUpdates = false;
         }
 
-        public static void ResetId()
+        private static void ResetId()
         {
             _id = default(int);
         }

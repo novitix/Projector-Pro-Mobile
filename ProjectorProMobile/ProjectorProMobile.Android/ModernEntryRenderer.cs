@@ -28,7 +28,7 @@ namespace ProjectorProMobile.Droid
                 Control.Background = new ColorDrawable(and.Color.Transparent);
                 GradientDrawable gd = new GradientDrawable();
                 gd.SetColor(and.Color.White);
-                gd.SetCornerRadius(90);
+                gd.SetCornerRadius(4);
                 //gd.SetStroke(2, and.Color.LightGray);
                 this.Control.Background = gd;
 

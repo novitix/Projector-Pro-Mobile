@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProjectorProMobile": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
