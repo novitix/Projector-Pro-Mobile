@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:cc="clr-namespace:CustomControls"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjectorProMobile.Pages.PageCreateConfirmation">
+             x:Class="ProjectorProMobile.Pages.PageCreateConfirmation"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             iOS:Page.UseSafeArea="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="cc:PinEntry">
@@ -18,7 +20,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtTitle" Text="Session Code" FontSize="55" HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
+            <Label x:Name="txtTitle" Text="Session Code" FontSize="30" HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <cc:PinEntry x:Name="code1"/>
                 <cc:PinEntry x:Name="code2"/>

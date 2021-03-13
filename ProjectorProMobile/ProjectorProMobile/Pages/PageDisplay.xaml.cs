@@ -29,9 +29,10 @@ namespace ProjectorProMobile.Pages
             }
             txtContent.BindingContext = currentSong;
             currentSong.Body = "Waiting for connection...";
+
         }
 
-        
+
 
         protected override void OnDisappearing()
         {
@@ -53,7 +54,6 @@ namespace ProjectorProMobile.Pages
             {
                 
             }
-            
         }
 
 
@@ -63,6 +63,9 @@ namespace ProjectorProMobile.Pages
             {
                 currentSong.ID = newId;
                 string res = await currentSong.SetBodyAsync();
+                // workaround for Xamarin bug where scrollview does not scroll unless the size of is changed.
+                scrollVw.VerticalOptions = LayoutOptions.FillAndExpand;
+
                 if (res == null)
                 {
                     await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
