@@ -8,6 +8,8 @@ using System.Linq;
 using Xamarin.Essentials;
 using Xamarin;
 using Xamarin.Forms;
+using System.Text.RegularExpressions;
+using System.IO;
 
     class Querier
 {
@@ -85,6 +87,45 @@ using Xamarin.Forms;
         body = body.Replace("\\n\\n", Environment.NewLine);
         body = body.Replace("\\n", Environment.NewLine);
         body = body.Replace("\n", Environment.NewLine);
-        return body;
+
+        // separate chinese and english and english lines
+        StringReader reader = new StringReader(body);
+        string temp = string.Empty;
+        for (string line = reader.ReadLine(); line != null; line = reader.ReadLine())
+        {
+            int lastChinesePos = LastChineseChar(line);
+            if (lastChinesePos != -1)
+            {
+                string firstHalf = line.Substring(0, lastChinesePos);
+                string secondHalf = line.Substring(lastChinesePos);
+                temp += firstHalf + Environment.NewLine + secondHalf + Environment.NewLine;
+            }
+            else
+            {
+                temp += line + Environment.NewLine;
+            }
+        }
+
+
+
+        return temp;
+    }
+
+    //private string stripPunctuation(string line)
+    //{
+    //    Regex.Replace(line, )
+    //}
+
+    private int LastChineseChar(string line)
+    {
+        Match chineseMatch = Regex.Match(line, @"[^\x00-\x7F]+");
+        bool containsChinese = chineseMatch.Success;
+        if (!containsChinese)
+        {
+            return -1;
+        }
+
+        Match englishMatch = Regex.Match(line, @"[a-zA-Z]");
+        return englishMatch.Index;
     }
 }
