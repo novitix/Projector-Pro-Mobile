@@ -6,10 +6,10 @@
              xmlns:pages="clr-namespace:ProjectorProMobile.Pages"
              mc:Ignorable="d"
              x:Class="ProjectorProMobile.MainPage"
-             BackgroundColor="white"
+             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}"
              FlyoutBehavior="Disabled"
-            TabBarTitleColor="red"
-            NavBarIsVisible="False">
+             TabBarTitleColor="{AppThemeBinding Light=#d0472e, Dark=#eb9088}"
+             NavBarIsVisible="False">
            
     <Shell.Resources>
         <ResourceDictionary>
@@ -28,17 +28,17 @@
         </Style>
     </Shell.Resources>
     <TabBar>
-        <Tab Title="Home" Icon="search_icon.png">
+        <Tab Icon="search_icon.png">
             <ShellContent>
                 <pages:PageSearch/>
             </ShellContent>
         </Tab>
-        <Tab Title="Session" Icon="add_icon.png">
+        <Tab Icon="add_icon.png">
             <ShellContent>
                 <pages:PageJoin/>
             </ShellContent>
         </Tab>
-        <Tab Title="Settings" Icon="settings_icon.png">
+        <Tab Icon="settings_icon.png">
             <ShellContent>
                 <pages:PageSettings/>
             </ShellContent>

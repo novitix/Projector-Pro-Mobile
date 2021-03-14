@@ -8,16 +8,26 @@
              BackgroundColor="#36382e"
              Title="Settings">
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here" TextChanged="txtServerAddress_TextChanged" BackgroundColor="White"/>
+        <StackLayout Margin="25,25,25,0">
+            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here" TextChanged="txtServerAddress_TextChanged" BackgroundColor="{AppThemeBinding Light=White, Dark=#222222}">
+                <cc:ModernEntry.Keyboard>
+                    <Keyboard x:FactoryMethod="Create">
+                        <x:Arguments>
+                            <KeyboardFlags>
+                                None
+                            </KeyboardFlags>
+                        </x:Arguments>
+                    </Keyboard>
+                </cc:ModernEntry.Keyboard>
+            </cc:ModernEntry>
             <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="Dark Mode" FontSize="20" VerticalOptions="Center" TextColor="White"/>
-                <Switch Grid.Column="2" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled" OnColor="#a39ba8" ThumbColor="#b8c5d6"/>
+                <Label Grid.Column="0" Text="Dark Mode" VerticalOptions="Center" TextColor="White"/>
+                <Switch Grid.Column="2" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled"/>
             </Grid>
 
         </StackLayout>
