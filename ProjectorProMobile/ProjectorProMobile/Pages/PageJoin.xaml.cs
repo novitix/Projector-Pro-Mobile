@@ -26,6 +26,7 @@ namespace ProjectorProMobile.Pages
             {
                 await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
             }
+            txtHiddenCode.Focus();
         }
 
         async private void btnCreateSesh_Clicked(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace ProjectorProMobile.Pages
         async private void txtHiddenCode_TextChanged(object sender, TextChangedEventArgs e)
         {
             string code = txtHiddenCode.Text;
+            //Console.WriteLine(code);
             code1.Text = "";
             code2.Text = "";
             code3.Text = "";

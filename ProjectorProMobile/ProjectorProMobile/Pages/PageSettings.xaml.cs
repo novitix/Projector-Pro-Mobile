@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ProjectorProMobile.Themes;
 
 namespace ProjectorProMobile.Pages
 {
@@ -33,6 +34,15 @@ namespace ProjectorProMobile.Pages
         private void swhDarkMode_Toggled(object sender, ToggledEventArgs e)
         {
             Preferences.Set("darkMode", swhDarkMode.IsToggled.ToString());
+            if (swhDarkMode.IsToggled)
+            {
+                App.Current.Resources = new DarkTheme();
+            }
+            else
+            {
+                App.Current.Resources = new LightTheme();
+            }
+              
         }
     }
 }

@@ -4,31 +4,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectorProMobile.Pages.PageCreateConfirmation"
              xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             iOS:Page.UseSafeArea="True">
+             iOS:Page.UseSafeArea="True"
+             BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="cc:PinEntry">
-                <Setter Property="BackgroundColor" Value="#b8c5d6"/>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ControlBgColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
                 <Setter Property="HeightRequest" Value="120"/>
                 <Setter Property="WidthRequest" Value="80"/>
                 <Setter Property="FontSize" Value="50"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="Keyboard" Value="Numeric"/>
-                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="IsReadOnly" Value="True"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtTitle" Text="Session Code" FontSize="30" HorizontalTextAlignment="Center" Margin="0,0,0,15"/>
+            <Label x:Name="txtTitle" Text="Session Code" FontSize="30" HorizontalTextAlignment="Center" Margin="0,15,0,15" TextColor="{DynamicResource ControlFgColor}"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <cc:PinEntry x:Name="code1"/>
-                <cc:PinEntry x:Name="code2"/>
-                <cc:PinEntry x:Name="code3"/>
-                <cc:PinEntry x:Name="code4"/>
+                <Entry x:Name="code1"/>
+                <Entry x:Name="code2"/>
+                <Entry x:Name="code3"/>
+                <Entry x:Name="code4"/>
             </StackLayout>
-            <Label Text="As the host, songs displayed on this device will be mirrored to joined devices." HorizontalTextAlignment="Center" Margin="40,30,40,0"/>
-            <Button x:Name="btnExitSesh" Text="Exit Session" VerticalOptions="EndAndExpand" Clicked="btnExitSesh_Clicked"/>
+            <Label Text="As the host, songs displayed on this device will be mirrored to joined devices."
+                   HorizontalTextAlignment="Center" Margin="40,30,40,0" TextColor="{DynamicResource ControlFgColor}"/>
+            
+            <ImageButton x:Name="btnExitSesh" Source="{DynamicResource ExitIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
+                         Padding="11" Margin="8" BackgroundColor="{DynamicResource ControlBgColor}"
+                         Clicked="btnExitSesh_Clicked" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

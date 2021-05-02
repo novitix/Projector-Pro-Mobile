@@ -4,19 +4,14 @@
              xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
-             x:Class="ProjectorProMobile.Pages.PageSearch">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#b8c5d6" Offset="0"/>
-                <GradientStop Color="#a39ba8" Offset="1"/>
-            </LinearGradientBrush>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             x:Class="ProjectorProMobile.Pages.PageSearch"
+             BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Content>
         <StackLayout>
             <!-- Place new controls here -->
-            <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20" TextChanged="Search_TextChanged" Margin="20,10,20,0" BackgroundColor="{AppThemeBinding Light=#efefef, Dark=#222222}">
+            <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20"
+                            TextChanged="Search_TextChanged" Margin="20,10,20,0"
+                            BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}">
                 <cc:ModernEntry.Keyboard>
                     <Keyboard x:FactoryMethod="Create">
                         <x:Arguments>
@@ -29,15 +24,19 @@
             </cc:ModernEntry>
 
 
-            <Grid>
-                <ListView SelectionMode="None" x:Name="ListResultsView" ItemTapped="ListResultsView_ItemTapped">
+            <Grid BackgroundColor="{DynamicResource PageBgColor}">
+                <ListView SelectionMode="None" x:Name="ListResultsView" ItemTapped="ListResultsView_ItemTapped" BackgroundColor="{DynamicResource PageBgColor}" SeparatorColor="{DynamicResource SongListSeparatorColor}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding}" TextColor="{AppThemeBinding Light=#03256C, Dark=White}"/>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="{DynamicResource PageBgColor}">
+                                    <Label Text="{Binding}" TextColor="{DynamicResource SongListFgColor}" VerticalOptions="CenterAndExpand" Margin="22,0,0,0"/>
+                                </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Label x:Name="lblMessage" HorizontalOptions="Center" Padding="25, 20, 25, 0"/>
+                <Label x:Name="lblMessage" HorizontalOptions="Center" Padding="25, 20, 25, 0" TextColor="{DynamicResource ControlFgColor}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

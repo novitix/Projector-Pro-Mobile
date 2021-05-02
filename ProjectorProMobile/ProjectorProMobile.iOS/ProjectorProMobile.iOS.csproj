@@ -154,8 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_launcher.png" />
-    <BundleResource Include="Resources\exit_icon.png" />
-    <BundleResource Include="Resources\create_icon.png" />
     <BundleResource Include="Resources\settings_icon%401x.png" />
     <BundleResource Include="Resources\settings_icon%402x.png" />
     <BundleResource Include="Resources\settings_icon%403x.png" />
@@ -165,5 +163,9 @@
     <BundleResource Include="Resources\add_icon%403x.png" />
     <BundleResource Include="Resources\search_icon%401x.png" />
     <BundleResource Include="Resources\search_icon%402x.png" />
+    <BundleResource Include="Resources\create_icon_dark.png" />
+    <BundleResource Include="Resources\create_icon_light.png" />
+    <BundleResource Include="Resources\exit_icon_dark.png" />
+    <BundleResource Include="Resources\exit_icon_light.png" />
   </ItemGroup>
 </Project>

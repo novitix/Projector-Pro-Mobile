@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjectorProMobile.Themes.DarkTheme">
+
+    <Color x:Key="PageBgColor">#111111</Color>
+    <Color x:Key="AccentColor">#eb9088</Color>
+    <Color x:Key="ControlBgColor">#2e2e2e</Color>
+    <Color x:Key="SongListFgColor">#ffffff</Color>
+    <Color x:Key="SongListSeparatorColor">#bbbbbb</Color>
+    <Color x:Key="ControlFgColor">#ffffff</Color>
+    <Color x:Key="LyricsBgColor">#585856</Color>
+
+    <x:String x:Key="CreateIconName">create_icon_light.png</x:String>
+    <x:String x:Key="ExitIconName">exit_icon_light.png</x:String>
+</ResourceDictionary>

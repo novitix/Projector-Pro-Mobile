@@ -2,39 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:tintPlugin="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
-             x:Class="ProjectorProMobile.Pages.PageJoin">
+             x:Class="ProjectorProMobile.Pages.PageJoin"
+             BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="cc:PinEntry">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#efefef, Dark=#222222}"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ControlBgColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
                 <Setter Property="HeightRequest" Value="120"/>
                 <Setter Property="WidthRequest" Value="80"/>
                 <Setter Property="FontSize" Value="50"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="Keyboard" Value="Numeric"/>
-                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="IsReadOnly" Value="True"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtTitle" Text="Enter Session Code" FontSize="33" HorizontalTextAlignment="Center" Margin="0,30,0,20"/>
+            <Label x:Name="txtTitle" Text="Enter Session Code" FontSize="33" HorizontalTextAlignment="Center" Margin="0,30,0,20"
+                   TextColor="{DynamicResource ControlFgColor}"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
-                <cc:PinEntry x:Name="code1"/>
-                <cc:PinEntry x:Name="code2"/>
-                <cc:PinEntry x:Name="code3"/>
-                <cc:PinEntry x:Name="code4"/>
+                <Entry x:Name="code1"/>
+                <Entry x:Name="code2"/>
+                <Entry x:Name="code3"/>
+                <Entry x:Name="code4"/>
             </StackLayout>
-            <tintPlugin:TintedImage x:Name="btnCreateSesh" Source="create_icon.png" WidthRequest="50" HeightRequest="50" Margin="8"
-                         HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" BackgroundColor="{AppThemeBinding Light=#efefef, Dark=#222222}" TintColor="{AppThemeBinding Light=#d0472e, Dark=#eb9088}"/>
-            <Entry x:Name="txtHiddenCode" BackgroundColor="Transparent" WidthRequest="0.0000001" HeightRequest="0.0000001" HorizontalOptions="End" TextChanged="txtHiddenCode_TextChanged" Keyboard="Numeric">
+            <ImageButton x:Name="btnCreateSesh" Source="{DynamicResource CreateIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
+                         Padding="11" Margin="8" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
+                         BackgroundColor="{DynamicResource ControlBgColor}" Clicked="btnCreateSesh_Clicked"/>
+            <Entry x:Name="txtHiddenCode" BackgroundColor="Transparent" WidthRequest="0.0000001" HeightRequest="0.0000001" HorizontalOptions="End" TextChanged="txtHiddenCode_TextChanged" Keyboard="Numeric" IsReadOnly="False">
                 <Entry.Behaviors>
                     <cc:NumericValidationBehavior/>
                 </Entry.Behaviors>

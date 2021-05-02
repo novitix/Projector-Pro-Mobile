@@ -5,11 +5,12 @@
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              x:Class="ProjectorProMobile.Pages.PageSettings"
-             BackgroundColor="#36382e"
-             Title="Settings">
+             Title="Settings"
+             BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Content>
         <StackLayout Margin="25,25,25,0">
-            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here" TextChanged="txtServerAddress_TextChanged" BackgroundColor="{AppThemeBinding Light=White, Dark=#222222}">
+            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here..." TextChanged="txtServerAddress_TextChanged"
+                            BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}">
                 <cc:ModernEntry.Keyboard>
                     <Keyboard x:FactoryMethod="Create">
                         <x:Arguments>
@@ -26,8 +27,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Text="Dark Mode" VerticalOptions="Center" TextColor="White"/>
-                <Switch Grid.Column="2" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled"/>
+                <Label Grid.Column="0" Text="Dark Mode" VerticalOptions="Center" TextColor="{DynamicResource ControlFgColor}"/>
+                <Switch Grid.Column="2" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled" OnColor="{DynamicResource AccentColor}"/>
             </Grid>
 
         </StackLayout>

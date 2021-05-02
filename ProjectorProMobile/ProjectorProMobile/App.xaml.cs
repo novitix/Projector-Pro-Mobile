@@ -1,4 +1,6 @@
 ﻿using System;
+using ProjectorProMobile.Themes;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +12,14 @@ namespace ProjectorProMobile
         {
             Device.SetFlags(new[] { "Brush_Experimental" });
             InitializeComponent();
-
+            if (Preferences.Get("darkMode", "True").ToLower() == "true")
+            {
+                App.Current.Resources = new DarkTheme();
+            }
+            else
+            {
+                App.Current.Resources = new LightTheme();
+            }
             MainPage = new MainPage();
         }
 

@@ -64,7 +64,7 @@ namespace ProjectorProMobile.Pages
                 currentSong.ID = newId;
                 string res = await currentSong.SetBodyAsync();
                 // workaround for Xamarin bug where scrollview does not scroll unless the size of is changed.
-                scrollVw.VerticalOptions = LayoutOptions.FillAndExpand;
+                //scrollVw.VerticalOptions = LayoutOptions.FillAndExpand;
 
                 if (res == null)
                 {
