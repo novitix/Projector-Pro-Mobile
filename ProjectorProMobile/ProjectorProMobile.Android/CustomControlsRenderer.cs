@@ -24,14 +24,25 @@ namespace ProjectorProMobile.Droid
 
             if (Control != null)
             {
-                Control.Background = new ColorDrawable(and.Color.Transparent);
+                //Control.Background = new ColorDrawable(and.Color.Transparent);
+                ColorDrawable currentBackgroundColor = null;
+                if (Control.Background is ColorDrawable)
+                {
+                    currentBackgroundColor = Control.Background as ColorDrawable;
+                }
+
                 GradientDrawable gd = new GradientDrawable();
-                gd.SetColor(and.Color.White);
-                gd.SetCornerRadius(90);
+                if (currentBackgroundColor != null)
+                {
+                    gd.SetCornerRadius(90);
+                    gd.SetColor(currentBackgroundColor.Color);
+                }
+                
                 //gd.SetStroke(2, and.Color.LightGray);
-                this.Control.Background = gd;
+                Control.Background = gd;
 
                 this.Control.SetPaddingRelative(35, 0, 35, 0);
+                
             }
         }
     }
@@ -44,16 +55,16 @@ namespace ProjectorProMobile.Droid
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
-            if (Control != null)
-            {
-                SetColor("#b8c5d6");
-                e.NewElement.Focused += (sender, evt) => {
-                    SetColor("#c8d2e0");
-                };
-                e.NewElement.Unfocused += (sender, evt) => {
-                    SetColor("#b8c5d6");
-                };
-            }
+            //if (Control != null)
+            //{
+            //    SetColor("#b8c5d6");
+            //    e.NewElement.Focused += (sender, evt) => {
+            //        SetColor("#c8d2e0");
+            //    };
+            //    e.NewElement.Unfocused += (sender, evt) => {
+            //        SetColor("#b8c5d6");
+            //    };
+            //}
         }
 
         private void SetColor(string hex)

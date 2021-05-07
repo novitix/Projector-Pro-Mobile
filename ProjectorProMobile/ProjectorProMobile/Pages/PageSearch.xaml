@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              x:Class="ProjectorProMobile.Pages.PageSearch"
@@ -10,8 +11,8 @@
         <StackLayout>
             <!-- Place new controls here -->
             <cc:ModernEntry x:Name="txtSearch" HeightRequest="50" ReturnType="Search" Placeholder="Search" FontSize="20"
-                            TextChanged="Search_TextChanged" Margin="20,10,20,0"
-                            BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}">
+                                    TextChanged="Search_TextChanged" Margin="20,10,20,0"
+                                    BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}">
                 <cc:ModernEntry.Keyboard>
                     <Keyboard x:FactoryMethod="Create">
                         <x:Arguments>

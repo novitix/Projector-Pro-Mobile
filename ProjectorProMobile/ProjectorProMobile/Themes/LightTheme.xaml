@@ -10,6 +10,7 @@
     <Color x:Key="SongListSeparatorColor">#cccccc</Color>
     <Color x:Key="ControlFgColor">Black</Color>
     <Color x:Key="LyricsBgColor">#ffd9d9</Color>
+    <Color x:Key="TabBarIconBgColor">#bbbbbb</Color>
 
     <x:String x:Key="CreateIconName">create_icon_dark.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_dark.png</x:String>

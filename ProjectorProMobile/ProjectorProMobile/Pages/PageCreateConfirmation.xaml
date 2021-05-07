@@ -8,7 +8,7 @@
              BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Entry">
+            <Style TargetType="cc:ModernEntry">
                 <Setter Property="BackgroundColor" Value="{DynamicResource ControlBgColor}"/>
                 <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
                 <Setter Property="HeightRequest" Value="120"/>
@@ -24,10 +24,10 @@
         <StackLayout>
             <Label x:Name="txtTitle" Text="Session Code" FontSize="30" HorizontalTextAlignment="Center" Margin="0,15,0,15" TextColor="{DynamicResource ControlFgColor}"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Entry x:Name="code1"/>
-                <Entry x:Name="code2"/>
-                <Entry x:Name="code3"/>
-                <Entry x:Name="code4"/>
+                <cc:ModernEntry x:Name="code1"/>
+                <cc:ModernEntry x:Name="code2"/>
+                <cc:ModernEntry x:Name="code3"/>
+                <cc:ModernEntry x:Name="code4"/>
             </StackLayout>
             <Label Text="As the host, songs displayed on this device will be mirrored to joined devices."
                    HorizontalTextAlignment="Center" Margin="40,30,40,0" TextColor="{DynamicResource ControlFgColor}"/>
