@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using Songs;
+using System.Threading;
 
 namespace ProjectorProMobile.Pages
 {
@@ -18,22 +19,41 @@ namespace ProjectorProMobile.Pages
         {
             InitializeComponent();
             SetStatusMessage();
-
-
         }
 
         SongCollection searchItems;
         Querier querier;
-        private async void Search_TextChanged(object sender, TextChangedEventArgs e)
+        private CancellationTokenSource throttleCts = new CancellationTokenSource();
+        int searchDelay = 200;
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            SearchInit(e.NewTextValue);
+        }
+
+        private void SearchInit(string searchTerm)
+        {
+            btnClearSearch.IsVisible = !string.IsNullOrEmpty(searchTerm);
+            if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 SetStatusMessage();
+                ListResultsView.ItemsSource = null;
                 return;
             }
-            SetStatusMessage("Searching...");
+            else
+            {
+                SetStatusMessage("Searching for \"" + searchTerm + "\"");
+                ListResultsView.SeparatorVisibility = SeparatorVisibility.None;
+            }
+
+            Interlocked.Exchange(ref throttleCts, new CancellationTokenSource()).Cancel();
+            Task.Delay(TimeSpan.FromMilliseconds(searchDelay), throttleCts.Token).ContinueWith(
+                async delegate { await Search(searchTerm); }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private async Task Search(string searchTerm)
+        {
             querier = new Querier();
-            searchItems = await querier.GetSearchResultsAsync(((Entry)sender).Text);
+            searchItems = await querier.GetSearchResultsAsync(searchTerm);
 
             if (searchItems == null)
             {
@@ -41,18 +61,18 @@ namespace ProjectorProMobile.Pages
             }
             else
             {
-                if (searchItems.Count > 0)
+                if ((searchItems.Count > 0) && (!string.IsNullOrEmpty(txtSearch.Text)))
                 {
                     ListResultsView.ItemsSource = searchItems.GetTitleArray();
+                    ListResultsView.SeparatorVisibility = SeparatorVisibility.Default;
                     SetStatusMessage();
                 }
-                else
+                else if(searchItems.Count == 0)
                 {
-                    SetStatusMessage("No results found.");
+                    SetStatusMessage("No results found for \"" + searchTerm + "\"");
                 }
-                
-            }
 
+            }
         }
 
 
@@ -81,6 +101,13 @@ namespace ProjectorProMobile.Pages
                 ListResultsView.ItemsSource = null;
             }
             lblMessage.Text = message;
+        }
+
+        void btnClearSearch_Clicked(System.Object sender, System.EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+            SearchInit(string.Empty);
         }
     }
 }

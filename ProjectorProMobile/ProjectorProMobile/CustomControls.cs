@@ -8,7 +8,29 @@ namespace CustomControls
 {
     public class ModernEntry : Entry
     {
+        public static readonly BindableProperty TextPaddingRightProperty =
+            BindableProperty.Create("TextPaddingRight",
+                                    typeof(int),
+                                    typeof(ModernEntry),
+                                    0);
 
+        public int TextPaddingRight
+        {
+            get => (int)GetValue(TextPaddingRightProperty);
+            set => SetValue(TextPaddingRightProperty, value);
+        }
+
+        public static readonly BindableProperty TextPaddingLeftProperty =
+            BindableProperty.Create("TextPaddingLeft",
+                                    typeof(int),
+                                    typeof(ModernEntry),
+                                    0);
+
+        public int TextPaddingLeft
+        {
+            get => (int)GetValue(TextPaddingLeftProperty);
+            set => SetValue(TextPaddingLeftProperty, value);
+        }
     }
 
     public class PinEntry : Entry
