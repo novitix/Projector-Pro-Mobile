@@ -9,7 +9,7 @@
              BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Content>
         <StackLayout Margin="25,25,25,0">
-            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here..." TextChanged="txtServerAddress_TextChanged"
+            <cc:ModernEntry x:Name="txtServerAddress" Placeholder="Enter server address here..." PlaceholderColor="{DynamicResource PlaceholderTextColour}" TextChanged="txtServerAddress_TextChanged"
                             BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}">
                 <cc:ModernEntry.Keyboard>
                     <Keyboard x:FactoryMethod="Create">

@@ -29,14 +29,12 @@ namespace ProjectorProMobile.Pages
             }
             txtContent.BindingContext = currentSong;
             currentSong.Body = "Waiting for connection...";
-
         }
 
 
 
         protected override void OnDisappearing()
         {
-            SessionManager.Hosting = SessionManager.HostStatus.Solo;
             Navigation.PopAsync();
             base.OnDisappearing();
             SessionManager.StopUpdateChecks();
@@ -59,12 +57,10 @@ namespace ProjectorProMobile.Pages
 
         private async void UpdateText(int newId)
         {
-            if (newId != -1)
+            if (newId != -1) // id = -1 means that the host has not sent a song id yet
             {
                 currentSong.ID = newId;
                 string res = await currentSong.SetBodyAsync();
-                // workaround for Xamarin bug where scrollview does not scroll unless the size of is changed.
-                //scrollVw.VerticalOptions = LayoutOptions.FillAndExpand;
 
                 if (res == null)
                 {
