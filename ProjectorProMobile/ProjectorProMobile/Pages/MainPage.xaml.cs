@@ -43,13 +43,16 @@ namespace ProjectorProMobile
 
         private void UpdateStatusBarColour()
         {
-            if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+            if (Device.RuntimePlatform == Device.iOS)
             {
-                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#000000");
-            }
-            else
-            {
-                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
+                if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+                {
+                    DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#000000");
+                }
+                else
+                {
+                    DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
+                }
             }
         }
     }
