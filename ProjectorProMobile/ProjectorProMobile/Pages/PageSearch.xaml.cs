@@ -19,7 +19,6 @@ namespace ProjectorProMobile.Pages
         {
             InitializeComponent();
             SetStatusMessage();
-            
         }
 
         SongCollection searchItems;
@@ -43,7 +42,7 @@ namespace ProjectorProMobile.Pages
             else
             {
                 SetStatusMessage("Searching for \"" + searchTerm + "\"");
-                ListResultsView.SeparatorVisibility = SeparatorVisibility.None;
+                //ListResultsView.SeparatorVisibility = SeparatorVisibility.None;
             }
 
             Interlocked.Exchange(ref throttleCts, new CancellationTokenSource()).Cancel();
@@ -65,7 +64,7 @@ namespace ProjectorProMobile.Pages
                 if ((searchItems.Count > 0) && (!string.IsNullOrEmpty(txtSearch.Text)))
                 {
                     ListResultsView.ItemsSource = searchItems.GetTitleArray();
-                    ListResultsView.SeparatorVisibility = SeparatorVisibility.Default;
+                    //ListResultsView.SeparatorVisibility = SeparatorVisibility.Default;
                     SetStatusMessage();
                 }
                 else if(searchItems.Count == 0)

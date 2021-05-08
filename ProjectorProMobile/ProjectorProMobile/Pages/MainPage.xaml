@@ -14,23 +14,7 @@
              FlyoutBehavior="Disabled"
              TabBarTitleColor="{DynamicResource AccentColor}"
              NavBarIsVisible="False" Shell.TabBarUnselectedColor="{DynamicResource TabBarIconBgColor}">
-           
-    <!--<Shell.Resources>
-        <ResourceDictionary>
-            <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#a39ba8" Offset="0"/>
-                <GradientStop Color="#b8c5d6" Offset="1"/>
-            </LinearGradientBrush>
-        <Style TargetType="Button">
-            <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="HeightRequest" Value="100"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Margin" Value="50,0"/>
-        </Style>
-        </ResourceDictionary>
-    </Shell.Resources>-->
+
     <TabBar>
         <Tab Icon="search_icon.png">
             <ShellContent>

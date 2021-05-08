@@ -47,6 +47,7 @@
                     <cc:NumericValidationBehavior/>
                 </cc:ModernEntry.Behaviors>
             </cc:ModernEntry>
+            <Rectangle HeightRequest="1" Margin="0" VerticalOptions="End" BackgroundColor="{DynamicResource TabBarSeparatorColour}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

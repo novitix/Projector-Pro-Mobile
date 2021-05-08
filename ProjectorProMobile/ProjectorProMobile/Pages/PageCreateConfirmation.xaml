@@ -35,6 +35,7 @@
             <ImageButton x:Name="btnExitSesh" Source="{DynamicResource ExitIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
                          Padding="11" Margin="8" BackgroundColor="{DynamicResource ControlBgColor}"
                          Clicked="btnExitSesh_Clicked" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>
+            <Rectangle HeightRequest="1" Margin="0" VerticalOptions="End" BackgroundColor="{DynamicResource TabBarSeparatorColour}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

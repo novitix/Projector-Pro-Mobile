@@ -5,14 +5,18 @@
     x:Class="ProjectorProMobile.Themes.LightTheme">
     
     <Color x:Key="PageBgColor">#ffffff</Color>
-    <Color x:Key="AccentColor">#d0472e</Color>  
+    <Color x:Key="AccentColor">#bd9a93</Color>
+    <Color x:Key="ToggleThumbColor">#ba6d5d</Color>
     <Color x:Key="ControlBgColor">#efefef</Color>
     <Color x:Key="SongListFgColor">#000000</Color> <!-- 03256C -->
     <Color x:Key="SongListSeparatorColor">#cccccc</Color>
     <Color x:Key="ControlFgColor">Black</Color>
-    <Color x:Key="LyricsBgColor">#63c5ff</Color>
+    <Color x:Key="LyricsBgColor">#926f61</Color>
+    <Color x:Key="LyricsFgColor">#ffffff</Color>
     <Color x:Key="TabBarIconBgColor">#bbbbbb</Color>
     <Color x:Key="PlaceholderTextColour">#bbbbbb</Color>
+    <Color x:Key="TabBarSeparatorColour">#eeeeee</Color>
+    
 
     <x:String x:Key="CreateIconName">create_icon_dark.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_dark.png</x:String>
