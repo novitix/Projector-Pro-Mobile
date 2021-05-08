@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Songs;
 using System.Timers;
+using ShaXam.DependencyServices;
+
 namespace ProjectorProMobile
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -20,6 +22,12 @@ namespace ProjectorProMobile
             SetSessionManager();
             InitializeComponent();
             Xamarin.Essentials.DeviceDisplay.KeepScreenOn = true;
+            Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
+        }
+
+        private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            UpdateStatusBarColour();
         }
 
         private void SetSessionManager()
@@ -30,6 +38,18 @@ namespace ProjectorProMobile
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
                 SessionManager.Hosting = SessionManager.HostStatus.Solo;
+            }
+        }
+
+        private void UpdateStatusBarColour()
+        {
+            if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+            {
+                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#000000");
+            }
+            else
+            {
+                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
             }
         }
     }

@@ -19,6 +19,7 @@ namespace ProjectorProMobile.Pages
         {
             InitializeComponent();
             SetStatusMessage();
+            
         }
 
         SongCollection searchItems;

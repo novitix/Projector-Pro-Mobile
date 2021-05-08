@@ -1,5 +1,6 @@
 ﻿using System;
 using ProjectorProMobile.Themes;
+using ShaXam.DependencyServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,6 +21,16 @@ namespace ProjectorProMobile
             {
                 App.Current.Resources = new LightTheme();
             }
+
+            if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+            {
+                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#000000");
+            }
+            else
+            {
+                DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
+            }
+
             MainPage = new MainPage();
         }
 

@@ -7,6 +7,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ProjectorProMobile.Themes;
+//using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using ShaXam.DependencyServices;
 
 namespace ProjectorProMobile.Pages
 {
@@ -42,7 +44,6 @@ namespace ProjectorProMobile.Pages
             {
                 App.Current.Resources = new LightTheme();
             }
-              
         }
     }
 }

@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <!-- Place new controls here (8, 37)-->
-            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="20,10,20,0" HeightRequest="55">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="20,25,20,0" HeightRequest="55">
                 <cc:ModernEntry x:Name="txtSearch" ReturnType="Search" Placeholder="Search" FontSize="20" TextPaddingLeft="8" TextPaddingRight="37"
                                         TextChanged="txtSearch_TextChanged"
                                         BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}"
