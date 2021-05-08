@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="ProjectorProMobile.Themes.LightTheme">
+    x:Class="ProjectorProMobile.Themes.LightTheme">
     
     <Color x:Key="PageBgColor">#ffffff</Color>
     <Color x:Key="AccentColor">#d0472e</Color>  
@@ -11,6 +12,7 @@
     <Color x:Key="ControlFgColor">Black</Color>
     <Color x:Key="LyricsBgColor">#63c5ff</Color>
     <Color x:Key="TabBarIconBgColor">#bbbbbb</Color>
+    <Color x:Key="PlaceholderTextColour">#bbbbbb</Color>
 
     <x:String x:Key="CreateIconName">create_icon_dark.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_dark.png</x:String>

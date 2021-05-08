@@ -26,7 +26,6 @@ namespace ProjectorProMobile.Pages
             {
                 await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
             }
-            txtHiddenCode.Focus();
         }
 
         async private void btnCreateSesh_Clicked(object sender, EventArgs e)

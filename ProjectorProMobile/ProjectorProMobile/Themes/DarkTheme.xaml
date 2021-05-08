@@ -11,6 +11,8 @@
     <Color x:Key="SongListSeparatorColor">#bbbbbb</Color>
     <Color x:Key="ControlFgColor">#ffffff</Color>
     <Color x:Key="LyricsBgColor">#132936</Color>
+    <Color x:Key="TabBarIconBgColor">#dddddd</Color>
+    <Color x:Key="PlaceholderTextColour">#b4b4b4</Color>
 
     <x:String x:Key="CreateIconName">create_icon_light.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_light.png</x:String>

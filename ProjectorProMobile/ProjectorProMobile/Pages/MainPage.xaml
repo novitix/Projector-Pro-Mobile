@@ -11,7 +11,7 @@
              BackgroundColor="{DynamicResource PageBgColor}"
              FlyoutBehavior="Disabled"
              TabBarTitleColor="{DynamicResource AccentColor}"
-             NavBarIsVisible="False" Shell.TabBarUnselectedColor="{DynamicResource TabBarIconBgColor}}">
+             NavBarIsVisible="False" Shell.TabBarUnselectedColor="{DynamicResource TabBarIconBgColor}">
            
     <!--<Shell.Resources>
         <ResourceDictionary>

@@ -14,7 +14,7 @@
                 <cc:ModernEntry x:Name="txtSearch" ReturnType="Search" Placeholder="Search" FontSize="20" TextPaddingLeft="8" TextPaddingRight="37"
                                         TextChanged="txtSearch_TextChanged"
                                         BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}"
-                                        VerticalOptions="FillAndExpand">
+                                        VerticalOptions="FillAndExpand" PlaceholderColor="{DynamicResource PlaceholderTextColour}">
                     <cc:ModernEntry.Keyboard>
                         <Keyboard x:FactoryMethod="Create">
                             <x:Arguments>
@@ -26,7 +26,7 @@
                     </cc:ModernEntry.Keyboard>
                 </cc:ModernEntry>
 
-                <ImageButton x:Name="btnClearSearch" Clicked="btnClearSearch_Clicked" Source="{DynamicResource ClearSearchIconName}" Margin="20,0,14,0" IsVisible="False"
+                <ImageButton x:Name="btnClearSearch" Clicked="btnClearSearch_Clicked" Source="{DynamicResource ClearSearchIconName}" Margin="20,0,14,0" IsVisible="False" BackgroundColor="Transparent"
                              HorizontalOptions="End" VerticalOptions="Center" HeightRequest="18" WidthRequest="{Binding Height, Source={x:Reference btnClearSearch}}"/>
             </Grid>
 
