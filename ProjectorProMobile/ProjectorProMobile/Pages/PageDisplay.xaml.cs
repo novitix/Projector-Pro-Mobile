@@ -35,7 +35,7 @@ namespace ProjectorProMobile.Pages
 
         protected override void OnDisappearing()
         {
-            Navigation.PopAsync();
+            Navigation.PopModalAsync();
             base.OnDisappearing();
             SessionManager.StopUpdateChecks();
         }
@@ -45,7 +45,6 @@ namespace ProjectorProMobile.Pages
             base.OnAppearing();
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
-
                 SessionManager.BeginUpdateChecks();
             }
             else
@@ -93,7 +92,7 @@ namespace ProjectorProMobile.Pages
             {
                 SessionManager.Hosting = SessionManager.HostStatus.Solo;
             }
-            Navigation.PopAsync();
+            Navigation.PopModalAsync();
         }
     }
 }

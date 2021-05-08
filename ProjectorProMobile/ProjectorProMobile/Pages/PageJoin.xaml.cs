@@ -70,7 +70,7 @@ namespace ProjectorProMobile.Pages
                     if ((bool)sessionExists)
                     {
                         SessionManager.Hosting = SessionManager.HostStatus.Follow;
-                        await Navigation.PushAsync(new PageDisplay());
+                        await Navigation.PushModalAsync(new PageDisplay());
                     }
                     else
                     {

@@ -81,7 +81,7 @@ namespace ProjectorProMobile.Pages
             Song selSong = searchItems.Collection[e.ItemIndex];
             //string msgTitle = selSong.GetDisplayHeader();
             //Task msgTask = DisplayAlert(msgTitle, await selSong.SetBodyAsync(), "Close");
-            Task pushNavigation = Navigation.PushAsync(new PageDisplay(selSong.ID));
+            Task pushNavigation = Navigation.PushModalAsync(new PageDisplay(selSong.ID));
 
             if (SessionManager.Hosting == SessionManager.HostStatus.Host)
             {
