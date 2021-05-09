@@ -5,6 +5,11 @@
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              x:Class="ProjectorProMobile.Pages.PageDisplay">
+
+    <ContentPage.Resources>
+        
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

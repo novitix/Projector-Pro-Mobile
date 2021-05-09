@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Songs;
+using ProjectorProMobile.DependencyServices;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -56,18 +57,17 @@ namespace ProjectorProMobile.Pages
 
         private async void UpdateText(int newId)
         {
-            if (newId != -1) // id = -1 means that the host has not sent a song id yet
-            {
-                currentSong.ID = newId;
-                string res = await currentSong.SetBodyAsync();
-
-                if (res == null)
-                {
-                    await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
-                    ExitDisplay();
-                }
-            }
+            if (newId == -1) return; // id = -1 means that the host has not sent a song id yet
             
+            currentSong.ID = newId;
+            string body = await currentSong.SetBodyAsync();
+            if (body == null)
+            {
+                await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+                ExitDisplay();
+                return;
+            }
+            currentSong.Body = LyricFormatter.GetFormattedBody(body);
         }
         protected override bool OnBackButtonPressed()
         {
