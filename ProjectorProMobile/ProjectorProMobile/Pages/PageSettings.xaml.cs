@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using ProjectorProMobile.Themes;
 //using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ShaXam.DependencyServices;
+using Android.Views;
 
 namespace ProjectorProMobile.Pages
 {
@@ -44,6 +45,8 @@ namespace ProjectorProMobile.Pages
             {
                 App.Current.Resources = new LightTheme();
             }
+
+            MessagingCenter.Send(this, "UpdateNavBarColour");
         }
     }
 }

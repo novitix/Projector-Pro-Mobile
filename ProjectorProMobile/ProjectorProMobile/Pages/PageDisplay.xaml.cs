@@ -41,12 +41,14 @@ namespace ProjectorProMobile.Pages
         {
             Navigation.PopModalAsync();
             base.OnDisappearing();
+            MessagingCenter.Send(this, "PreventLandscape");
             SessionManager.StopUpdateChecks();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            MessagingCenter.Send(this, "AllowLandscape");
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
                 SessionManager.BeginUpdateChecks();
