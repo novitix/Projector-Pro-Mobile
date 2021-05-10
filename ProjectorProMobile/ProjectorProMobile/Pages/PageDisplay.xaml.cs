@@ -9,12 +9,14 @@ using ProjectorProMobile.DependencyServices;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.ComponentModel;
 
 namespace ProjectorProMobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageDisplay : ContentPage
     {
+        public LyricStyler lyricStyler;
         Song currentSong;
         public PageDisplay(int songId = -1)
         {
@@ -28,7 +30,8 @@ namespace ProjectorProMobile.Pages
             {
                 UpdateText(songId);
             }
-            txtContent.BindingContext = currentSong;
+            lyricStyler = new LyricStyler(Resources);
+            txtContent.BindingContext = lyricStyler;
             currentSong.Body = "Waiting for connection...";
         }
 
@@ -68,6 +71,7 @@ namespace ProjectorProMobile.Pages
                 return;
             }
             currentSong.Body = LyricFormatter.GetFormattedBody(body);
+            lyricStyler.FormatAndSet(currentSong.Body);
         }
         protected override bool OnBackButtonPressed()
         {
@@ -94,5 +98,6 @@ namespace ProjectorProMobile.Pages
             }
             Navigation.PopModalAsync();
         }
+
     }
 }

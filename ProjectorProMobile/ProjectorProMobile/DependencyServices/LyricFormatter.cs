@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ProjectorProMobile.DependencyServices
 {
-    enum LineType
+    public enum LineType
     {
         OnlyEnglish = 0,
         OnlyChinese = 1,
@@ -80,6 +80,10 @@ namespace ProjectorProMobile.DependencyServices
                 return body;
         }
 
+        private static Regex regAlphabat = new Regex(@"[a-zA-Z]", RegexOptions.Compiled);
+        private static Regex regChinese = new Regex(@"\p{IsCJKUnifiedIdeographs}", RegexOptions.Compiled);
+
+
         private static string GetFormattedChineseEnglishLine(string CEline, int englishStartPosition)
         {
             string formattedCELine = string.Empty;
@@ -118,10 +122,8 @@ namespace ProjectorProMobile.DependencyServices
         }
         private static (bool, int) CheckChineseEnglish(string currLine)
         {
-            Regex rx1 = new Regex(@"[a-zA-Z]", RegexOptions.Compiled); // matches english alphabet
-            Match matchEnglish = rx1.Match(currLine);
-            Regex rx2 = new Regex(@"[^\x00-\x7F]+", RegexOptions.Compiled); // matches non ASCII characters
-            Match matchChinese = rx2.Match(currLine);
+            Match matchEnglish = regAlphabat.Match(currLine);
+            Match matchChinese = regChinese.Match(currLine);
 
             if (matchEnglish.Success && matchChinese.Success)
             {
@@ -134,8 +136,7 @@ namespace ProjectorProMobile.DependencyServices
         }
         private static bool CheckOnlyEnglish(string currLine)
         {
-            Regex rx = new Regex(@"[^\x00-\x7F]+", RegexOptions.Compiled); // matches all non ASCII characters
-            return !rx.Match(currLine).Success;
+            return !regChinese.Match(currLine).Success;
         }
 
         private static bool CheckOnlyPinyin(string currLine, string nextLine)
@@ -144,12 +145,10 @@ namespace ProjectorProMobile.DependencyServices
             // next line must not be empty and must have atleast some chinese
             if (nextLine == null) return false;
 
-            Regex rx1 = new Regex(@"[^\x00-\x7F]+", RegexOptions.Compiled); // matches all non ASCII characters
-            bool currLineOnlyAscii = !rx1.Match(currLine).Success;
+            bool currLineOnlyAscii = !regChinese.Match(currLine).Success;
             bool nextLineNotEmpty = !CheckEmptyOrWhiteSpace(nextLine);
 
-            Regex rx2 = new Regex(@"[^\x00-\x7F]+", RegexOptions.Compiled); // matches all non ASCII characters
-            bool nextLineHaveSomeNonAscii = rx2.Match(nextLine).Success;
+            bool nextLineHaveSomeNonAscii = regChinese.Match(nextLine).Success;
             return currLineOnlyAscii && nextLineNotEmpty && nextLineHaveSomeNonAscii;
         }
     }
