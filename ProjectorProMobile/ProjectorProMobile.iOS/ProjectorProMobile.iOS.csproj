@@ -172,4 +172,16 @@
     <BundleResource Include="Resources\clear_search_icon_light.png" />
     <BundleResource Include="Resources\clear_search_icon_dark.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\right_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\right_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\left_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\left_light.png" />
+  </ItemGroup>
 </Project>

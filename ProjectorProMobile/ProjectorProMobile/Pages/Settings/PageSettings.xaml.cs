@@ -10,6 +10,7 @@ using ProjectorProMobile.Themes;
 //using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ShaXam.DependencyServices;
 using Android.Views;
+using ProjectorProMobile.Pages.Settings;
 
 namespace ProjectorProMobile.Pages
 {
@@ -47,6 +48,11 @@ namespace ProjectorProMobile.Pages
             }
 
             MessagingCenter.Send(this, "UpdateNavBarColour");
+        }
+
+        private void btnNavLyricSelector_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PageSettingsLyricsSelector());
         }
     }
 }

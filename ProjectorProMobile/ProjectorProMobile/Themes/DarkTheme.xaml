@@ -17,7 +17,10 @@
     <Color x:Key="PlaceholderTextColour">#b4b4b4</Color>
     <Color x:Key="TabBarSeparatorColour">#222222</Color>
 
+    
     <x:String x:Key="CreateIconName">create_icon_light.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_light.png</x:String>
     <x:String x:Key="ClearSearchIconName">clear_search_icon_light.png</x:String>
+    <x:String x:Key="RightIconName">right_light.png</x:String>
+    <x:String x:Key="LeftIconName">left_light.png</x:String>
 </ResourceDictionary>

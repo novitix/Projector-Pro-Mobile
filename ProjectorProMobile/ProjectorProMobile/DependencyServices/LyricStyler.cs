@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ProjectorProMobile.DependencyServices
@@ -39,6 +40,25 @@ namespace ProjectorProMobile.DependencyServices
 
         public void FormatAndSet(string content)
         {
+            bool hasEnglish = content.Contains("<0>");
+            bool hasChinese = content.Contains("<1>");
+            bool hasPinyin = content.Contains("<2>");
+
+            bool showEnglish = (Preferences.Get("showEnglishLyrics", "true").ToLower() == "true");
+            bool showChinese = (Preferences.Get("showChineseLyrics", "true").ToLower() == "true");
+            bool showPinyin = (Preferences.Get("showPinyinLyrics", "true").ToLower() == "true");
+            bool allowOverride = (Preferences.Get("allowLyricOverride", "true").ToLower() == "true");
+
+
+            if (allowOverride && !(showEnglish && hasEnglish) && !(showChinese && hasChinese) && !(showPinyin && hasPinyin))
+            {
+                // nothing will be shown based on user settings and language availability; if user has chosen to override in settings, all available languages will be shown
+                showEnglish = true;
+                showChinese = true;
+                showPinyin = true;
+            }
+
+
             FormattedStringBuilder builder = new FormattedStringBuilder(_resDict);
 
             using (var reader = new StringReader(content))
@@ -75,6 +95,7 @@ namespace ProjectorProMobile.DependencyServices
                     }
                     else
                     {
+                        if (!showEnglish && lineType == LineType.OnlyEnglish || !showChinese && lineType == LineType.OnlyChinese || !showPinyin && lineType == LineType.OnlyPinyin) continue; // users can choose to hide certain types of lyrics
                         builder.AddSpan(line.Substring(3), styleName);
                     }
                     

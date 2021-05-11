@@ -7,7 +7,7 @@
     <Color x:Key="PageBgColor">#ffffff</Color>
     <Color x:Key="AccentColor">#bd9a93</Color>
     <Color x:Key="ToggleThumbColor">#ba6d5d</Color>
-    <Color x:Key="ControlBgColor">#efefef</Color>
+    <Color x:Key="ControlBgColor">#ededed</Color>
     <Color x:Key="SongListFgColor">#000000</Color> <!-- 03256C -->
     <Color x:Key="SongListSeparatorColor">#cccccc</Color>
     <Color x:Key="ControlFgColor">Black</Color>
@@ -21,4 +21,6 @@
     <x:String x:Key="CreateIconName">create_icon_dark.png</x:String>
     <x:String x:Key="ExitIconName">exit_icon_dark.png</x:String>
     <x:String x:Key="ClearSearchIconName">clear_search_icon_dark.png</x:String>
+    <x:String x:Key="RightIconName">right_dark.png</x:String>
+    <x:String x:Key="LeftIconName">left_dark.png</x:String>
 </ResourceDictionary>
