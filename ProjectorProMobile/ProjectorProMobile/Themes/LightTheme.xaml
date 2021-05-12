@@ -6,7 +6,7 @@
     
     <Color x:Key="PageBgColor">#ffffff</Color>
     <Color x:Key="AccentColor">#bd9a93</Color>
-    <Color x:Key="ToggleThumbColor">#ba6d5d</Color>
+    <Color x:Key="ToggleThumbColor">#dddddd</Color>
     <Color x:Key="ControlBgColor">#ededed</Color>
     <Color x:Key="SongListFgColor">#000000</Color> <!-- 03256C -->
     <Color x:Key="SongListSeparatorColor">#cccccc</Color>

@@ -32,7 +32,7 @@ namespace ProjectorProMobile
                     DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
                 }
             }
-            
+            Pages.Settings.PageSettingsLyricsColourPicker.CreateDefaultColourPreferencesIfNotExist();
 
             MainPage = new MainPage();
         }

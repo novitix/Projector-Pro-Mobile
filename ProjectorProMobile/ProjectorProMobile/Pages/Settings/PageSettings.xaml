@@ -57,6 +57,7 @@
 
                     <Label Grid.Row="4" Grid.Column="1" Text="Dark Mode" VerticalOptions="Center"/>
                     <Switch Grid.Row="4" Grid.Column="1" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled" HorizontalOptions="End"/>
+                    
                     <Rectangle Grid.Row="5" Grid.ColumnSpan="3"/>
                     <AbsoluteLayout Grid.Row="6" Grid.Column="1">
                         <Label Text="Change lyric language"/>
@@ -65,6 +66,13 @@
                         <Button x:Name="btnNavLyricSelector" Clicked="btnNavLyricSelector_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
                     </AbsoluteLayout>
 
+                    <Rectangle Grid.Row="7" Grid.ColumnSpan="3"/>
+                    <AbsoluteLayout Grid.Row="8" Grid.Column="1">
+                        <Label Text="Change lyric appearance"/>
+                        <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
+                              AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavLyricAppearance" Clicked="btnNavLyricAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                    </AbsoluteLayout>
 
                 </Grid>
             </StackLayout>

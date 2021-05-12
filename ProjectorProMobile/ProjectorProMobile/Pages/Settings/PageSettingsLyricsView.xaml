@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectorProMobile.Pages.Settings.PageSettingsLyricsView"
+             BackgroundColor="{DynamicResource PageBgColor}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Padding" Value="0,0,0,5"/>
+        </Style>
+        <Style TargetType="Rectangle">
+            <Setter Property="HeightRequest" Value="1"/>
+            <Setter Property="Margin" Value="0,20,0,20"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource TabBarSeparatorColour}"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="0,0,0,0" Spacing="0" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" Padding="20,20,20,0" Margin="0">
+                    <ImageButton x:Name="btnBack" Clicked="btnBack_Clicked" Source="{DynamicResource LeftIconName}" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25" HorizontalOptions="Start" VerticalOptions="Center"/>
+                    <Label Text="Change Lyric Appearance" Margin="10,0,0,0" Padding="0" FontSize="20"/>
+                </StackLayout>
+                <Rectangle/>
+
+                <Grid Margin="0" ColumnSpacing="0" RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <AbsoluteLayout Grid.Row="0" Grid.Column="1">
+                        <Label Text="English"/>
+                        <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavChangeEnglishAppearance" Clicked="btnNavChangeEnglishAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                    </AbsoluteLayout>
+
+                    <Rectangle Grid.Row="1" Grid.ColumnSpan="3"/>
+                    <AbsoluteLayout Grid.Row="2" Grid.Column="1">
+                        <Label Text="Chinese"/>
+                        <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavChangeChineseAppearance" Clicked="btnNavChangeChineseAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                    </AbsoluteLayout>
+
+                    <Rectangle Grid.Row="3" Grid.ColumnSpan="3"/>
+                    <AbsoluteLayout Grid.Row="4" Grid.Column="1">
+                        <Label Text="Pinyin"/>
+                        <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
+                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavChangePinyinAppearance" Clicked="btnNavChangePinyinAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                    </AbsoluteLayout>
+                </Grid>
+            </StackLayout>
+
+            <Rectangle Margin="0" VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

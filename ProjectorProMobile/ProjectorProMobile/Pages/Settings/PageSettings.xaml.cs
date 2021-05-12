@@ -54,5 +54,10 @@ namespace ProjectorProMobile.Pages
         {
             Navigation.PushAsync(new PageSettingsLyricsSelector());
         }
+
+        private void btnNavLyricAppearance_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PageSettingsLyricsView());
+        }
     }
 }
