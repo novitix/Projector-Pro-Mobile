@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjectorProMobile.Pages.Settings.PageSettingsLyricsView"
+             x:Class="ProjectorProMobile.Pages.Settings.PageSettingsLyricsProperty"
              BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -20,10 +20,10 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Margin="0,0,0,0" Spacing="0" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand" Spacing="0" Margin="0">
                 <StackLayout Orientation="Horizontal" Padding="20,20,20,0" Margin="0">
                     <ImageButton x:Name="btnBack" Clicked="btnBack_Clicked" Source="{DynamicResource LeftIconName}" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25" HorizontalOptions="Start" VerticalOptions="Center"/>
-                    <Label Text="Change Lyric Appearance" Margin="10,0,0,0" Padding="0" FontSize="20"/>
+                    <Label x:Name="lblPageTitle" Text="Change Lyric Appearance" Margin="10,0,0,0" Padding="0" FontSize="20"/>
                 </StackLayout>
                 <Rectangle/>
 
@@ -41,30 +41,21 @@
                     </Grid.RowDefinitions>
 
                     <AbsoluteLayout Grid.Row="0" Grid.Column="1">
-                        <Label Text="English"/>
+                        <Label Text="Change colour"/>
                         <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
-                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
-                        <Button x:Name="btnNavChangeEnglishAppearance" Clicked="btnNavChangeEnglishAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                              AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavLyricColour" Clicked="btnNavLyricColour_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
                     </AbsoluteLayout>
 
                     <Rectangle Grid.Row="1" Grid.ColumnSpan="3"/>
                     <AbsoluteLayout Grid.Row="2" Grid.Column="1">
-                        <Label Text="Chinese"/>
+                        <Label Text="Change font"/>
                         <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
-                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
-                        <Button x:Name="btnNavChangeChineseAppearance" Clicked="btnNavChangeChineseAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
-                    </AbsoluteLayout>
-
-                    <Rectangle Grid.Row="3" Grid.ColumnSpan="3"/>
-                    <AbsoluteLayout Grid.Row="4" Grid.Column="1">
-                        <Label Text="Pinyin"/>
-                        <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"
-                                  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
-                        <Button x:Name="btnNavChangePinyinAppearance" Clicked="btnNavChangePinyinAppearance_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
+                              AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,20,20"/>
+                        <Button x:Name="btnNavLyricFont" Clicked="btnNavLyricFont_Clicked" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,2" Padding="0" Margin="0"/>
                     </AbsoluteLayout>
                 </Grid>
             </StackLayout>
-
             <Rectangle Margin="0" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>

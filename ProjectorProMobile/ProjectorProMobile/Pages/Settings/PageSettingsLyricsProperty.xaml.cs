@@ -10,14 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace ProjectorProMobile.Pages.Settings
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageSettingsLyricsAppearancePicker : ContentPage
+    public partial class PageSettingsLyricsProperty : ContentPage
     {
         private string _lyricLanguage;
-        public PageSettingsLyricsAppearancePicker(string lyricLanguage)
+        public PageSettingsLyricsProperty()
         {
             InitializeComponent();
-            lblPageTitle.Text = "Change " + lyricLanguage + " Lyric Appearance";
-            _lyricLanguage = lyricLanguage;
         }
 
         private void btnBack_Clicked(object sender, EventArgs e)
@@ -27,7 +25,7 @@ namespace ProjectorProMobile.Pages.Settings
 
         private void btnNavLyricColour_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PageSettingsLyricsColourPicker(_lyricLanguage));
+            Navigation.PushAsync(new PageSettingsLyricsLanguage("Colour"));
         }
 
         private void btnNavLyricFont_Clicked(object sender, EventArgs e)

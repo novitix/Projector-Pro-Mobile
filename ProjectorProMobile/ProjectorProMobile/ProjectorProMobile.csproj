@@ -29,7 +29,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsAppearancePicker.xaml">
+    <Compile Update="Pages\Settings\PageSettingsLyricsProperty.xaml.cs">
+      <DependentUpon>PageSettingsLyricsProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Settings\PageSettingsLyricsLanguage.xaml.cs">
+      <DependentUpon>PageSettingsLyricsLanguage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsProperty.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsColourPicker.xaml">
@@ -38,7 +46,7 @@
     <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsSelector.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsView.xaml">
+    <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsLanguage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
