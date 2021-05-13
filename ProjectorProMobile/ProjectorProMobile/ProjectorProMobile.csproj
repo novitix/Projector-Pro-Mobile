@@ -37,6 +37,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsFontPicker.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Settings\PageSettingsLyricsProperty.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

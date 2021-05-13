@@ -11,6 +11,7 @@ using ProjectorProMobile.Themes;
 using ShaXam.DependencyServices;
 using Android.Views;
 using ProjectorProMobile.Pages.Settings;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile.Pages
 {
@@ -25,19 +26,18 @@ namespace ProjectorProMobile.Pages
 
         private void LoadSettings()
         {
-            txtServerAddress.Text = Preferences.Get("serverAddress", "");
-            string dmToggled = Preferences.Get("darkMode", "True");
-            swhDarkMode.IsToggled = dmToggled.ToLower() == "true";
+            txtServerAddress.Text = SettingsManager.Get("ServerAddress");
+            swhDarkMode.IsToggled = SettingsManager.Get("DarkMode") == "True";
         }
 
         private void txtServerAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Preferences.Set("serverAddress", txtServerAddress.Text);
+            SettingsManager.Set("ServerAddress", txtServerAddress.Text);
         }
 
         private void swhDarkMode_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("darkMode", swhDarkMode.IsToggled.ToString());
+            SettingsManager.Set("DarkMode", swhDarkMode.IsToggled.ToString());
             if (swhDarkMode.IsToggled)
             {
                 App.Current.Resources = new DarkTheme();

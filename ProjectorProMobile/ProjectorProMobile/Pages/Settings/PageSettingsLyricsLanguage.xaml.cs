@@ -48,7 +48,7 @@ namespace ProjectorProMobile.Pages.Settings
             }
             else if (_lyricProperty == "Font")
             {
-                //Navigation.PushAsync(new PageSettingsLyricsFontPicker(language));
+                Navigation.PushAsync(new PageSettingsLyricsFontPicker(language));
             }
         }
     }

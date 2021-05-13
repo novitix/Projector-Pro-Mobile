@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 using Songs;
 using System.Timers;
 using ShaXam.DependencyServices;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile
 {
@@ -32,9 +33,10 @@ namespace ProjectorProMobile
 
         private void SetSessionManager()
         {
-            string strSeshCode = Preferences.Get("sessionCode", "0000");
+            string strSeshCode = SettingsManager.Get("SessionCode");
             SessionManager.SessionCode = int.Parse(strSeshCode);
-            SessionManager.Hosting = (SessionManager.HostStatus)Preferences.Get("hostStatus", 0);
+            Enum.TryParse(SettingsManager.Get("HostStatus"), out SessionManager.HostStatus hostStatus);
+            SessionManager.Hosting = hostStatus;
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
                 SessionManager.Hosting = SessionManager.HostStatus.Solo;

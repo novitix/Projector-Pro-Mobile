@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectorProMobile.DependencyServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,25 +21,25 @@ namespace ProjectorProMobile.Pages.Settings
 
         private void LoadSettings()
         {
-            swhShowEnglish.IsToggled = (Preferences.Get("showEnglishLyrics", "true").ToLower() == "true");
-            swhShowChinese.IsToggled = (Preferences.Get("showChineseLyrics", "true").ToLower() == "true");
-            swhShowPinyin.IsToggled = (Preferences.Get("showPinyinLyrics", "true").ToLower() == "true");
-            swhAllowLyricOverride.IsToggled = (Preferences.Get("allowLyricOverride", "true").ToLower() == "true");
+            swhShowEnglish.IsToggled = (SettingsManager.Get("EnglishShow") == "True");
+            swhShowChinese.IsToggled = (SettingsManager.Get("ChineseShow") == "True");
+            swhShowPinyin.IsToggled = (SettingsManager.Get("PinyinShow") == "True");
+            swhAllowLyricOverride.IsToggled = (SettingsManager.Get("LyricOverride") == "True");
         }
 
         private void swhShowEnglish_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("showEnglishLyrics", swhShowEnglish.IsToggled.ToString());
+            SettingsManager.Set("EnglishShow", swhShowEnglish.IsToggled.ToString());
         }
 
         private void swhShowChinese_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("showChineseLyrics", swhShowChinese.IsToggled.ToString());
+            SettingsManager.Set("ChineseShow", swhShowChinese.IsToggled.ToString());
         }
 
         private void swhShowPinyin_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("showPinyinLyrics", swhShowPinyin.IsToggled.ToString());
+            SettingsManager.Set("PinyinShow", swhShowPinyin.IsToggled.ToString());
         }
 
         private void btnBack_Clicked(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace ProjectorProMobile.Pages.Settings
 
         private void swhAllowLyricOverride_Toggled(object sender, ToggledEventArgs e)
         {
-            Preferences.Set("allowLyricOverride", swhAllowLyricOverride.IsToggled.ToString());
+            SettingsManager.Set("LyricOverride", swhAllowLyricOverride.IsToggled.ToString());
         }
     }
 }

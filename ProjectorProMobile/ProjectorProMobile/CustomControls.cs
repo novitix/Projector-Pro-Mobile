@@ -71,4 +71,41 @@ namespace CustomControls
 
 
     }
+
+    public class FontValidationBehavior : Behavior<Entry>
+    {
+
+        protected override void OnAttachedTo(Entry entry)
+        {
+            entry.TextChanged += OnEntryTextChanged;
+            base.OnAttachedTo(entry);
+        }
+
+        protected override void OnDetachingFrom(Entry entry)
+        {
+            entry.TextChanged -= OnEntryTextChanged;
+            base.OnDetachingFrom(entry);
+        }
+
+        private static void OnEntryTextChanged(object sender, TextChangedEventArgs args)
+        {
+
+            if (!string.IsNullOrWhiteSpace(args.NewTextValue))
+            {
+                bool isNumeric = args.NewTextValue.ToCharArray().All(x => char.IsDigit(x)); //Make sure all characters are numbers
+                if (!isNumeric)
+                {
+                    ((Entry)sender).Text = args.NewTextValue.Remove(args.NewTextValue.Length - 1);
+                }
+
+                if (int.Parse(args.NewTextValue) > 70)
+                {
+                    ((Entry)sender).Text = "70";
+                }
+
+            }
+        }
+
+
+    }
 }

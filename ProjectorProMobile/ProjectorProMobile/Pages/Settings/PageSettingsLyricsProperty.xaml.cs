@@ -12,7 +12,6 @@ namespace ProjectorProMobile.Pages.Settings
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageSettingsLyricsProperty : ContentPage
     {
-        private string _lyricLanguage;
         public PageSettingsLyricsProperty()
         {
             InitializeComponent();
@@ -30,7 +29,7 @@ namespace ProjectorProMobile.Pages.Settings
 
         private void btnNavLyricFont_Clicked(object sender, EventArgs e)
         {
-            
+            Navigation.PushAsync(new PageSettingsLyricsLanguage("Font"));
         }
 
     }

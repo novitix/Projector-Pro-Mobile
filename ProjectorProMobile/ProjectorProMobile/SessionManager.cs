@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using Xamarin.Forms;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile
 {
@@ -21,7 +22,7 @@ namespace ProjectorProMobile
             set
             {
                 _sessionCode = value;
-                Preferences.Set("sessionCode", _sessionCode.ToString());
+                SettingsManager.Set("SessionCode", _sessionCode.ToString());
             }
         }
         public enum HostStatus
@@ -44,7 +45,7 @@ namespace ProjectorProMobile
                     ResetId();
                 }
                 _hosting = value;
-                Preferences.Set("hostStatus", (int)_hosting);
+                SettingsManager.Set("HostStatus", _hosting.ToString());
             }
         }
         public static async Task<int?> CreateSessionAsync()
@@ -155,8 +156,7 @@ namespace ProjectorProMobile
 
         private static string getBaseUrl()
         {
-            const string defaultUrl = "projector-pro-server.herokuapp.com";
-            string url = Preferences.Get("serverAddress", defaultUrl);
+            string url = SettingsManager.Get("ServerAddress");
             return url;
         }
 

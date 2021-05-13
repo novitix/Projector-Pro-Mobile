@@ -4,6 +4,7 @@ using ShaXam.DependencyServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile
 {
@@ -13,7 +14,7 @@ namespace ProjectorProMobile
         {
             Device.SetFlags(new[] { "Brush_Experimental" });
             InitializeComponent();
-            if (Preferences.Get("darkMode", "True").ToLower() == "true")
+            if (SettingsManager.Get("DarkMode") == "True")
             {
                 App.Current.Resources = new DarkTheme();
             }
@@ -32,7 +33,6 @@ namespace ProjectorProMobile
                     DependencyService.Get<IStatusBarStyleManager>().SetColoredStatusBar("#ffffff");
                 }
             }
-            Pages.Settings.PageSettingsLyricsColourPicker.CreateDefaultColourPreferencesIfNotExist();
 
             MainPage = new MainPage();
         }

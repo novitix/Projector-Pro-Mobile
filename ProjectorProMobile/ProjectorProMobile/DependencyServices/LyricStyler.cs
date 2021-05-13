@@ -44,10 +44,10 @@ namespace ProjectorProMobile.DependencyServices
             bool hasChinese = content.Contains("<1>");
             bool hasPinyin = content.Contains("<2>");
 
-            bool showEnglish = (Preferences.Get("showEnglishLyrics", "true").ToLower() == "true");
-            bool showChinese = (Preferences.Get("showChineseLyrics", "true").ToLower() == "true");
-            bool showPinyin = (Preferences.Get("showPinyinLyrics", "true").ToLower() == "true");
-            bool allowOverride = (Preferences.Get("allowLyricOverride", "true").ToLower() == "true");
+            bool showEnglish = (SettingsManager.Get("EnglishShow") == "True");
+            bool showChinese = (SettingsManager.Get("ChineseShow") == "True");
+            bool showPinyin = (SettingsManager.Get("PinyinShow") == "True");
+            bool allowOverride = (SettingsManager.Get("LyricOverride") == "True");
 
 
             if (allowOverride && !(showEnglish && hasEnglish) && !(showChinese && hasChinese) && !(showPinyin && hasPinyin))

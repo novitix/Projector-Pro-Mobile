@@ -41,7 +41,6 @@
                     </Grid.RowDefinitions>
 
                     <colorpicker:ColorCircle x:Name="colPicker" Grid.Column="1" Grid.Row="1" SelectedColor="{Binding SelColour, Mode=TwoWay}"/>
-                    <!--<BoxView x:Name="bvDisplayColour" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" WidthRequest="80" CornerRadius="25" BindingContext="{x:Reference Name=colPicker}" BackgroundColor="{Binding Path=SelectedColor, Mode=TwoWay}"/>-->
                     <BoxView x:Name="bvDisplayColour" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" WidthRequest="150" HeightRequest="50" CornerRadius="20" Margin="0,25,0,0" BackgroundColor="{Binding Source={x:Reference colPicker}, Path=SelectedColor}"/>
 
                 </Grid>

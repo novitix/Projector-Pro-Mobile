@@ -10,6 +10,7 @@ using Xamarin;
 using Xamarin.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
+using ProjectorProMobile.DependencyServices;
 
     class Querier
 {
@@ -19,7 +20,7 @@ using System.IO;
     public Querier()
     {
         string defaultUrl = "projector-pro-server.herokuapp.com";
-        string url = Preferences.Get("serverAddress", defaultUrl);
+        string url = SettingsManager.Get("ServerAddress");
         baseUri = string.IsNullOrWhiteSpace(url) ? string.Format("http://{0}/api/songs", defaultUrl) : string.Format("http://{0}/api/songs", url);
         client.Timeout = TimeSpan.FromSeconds(10);
     }

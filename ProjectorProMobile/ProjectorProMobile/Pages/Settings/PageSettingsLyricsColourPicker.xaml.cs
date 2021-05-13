@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile.Pages.Settings
 {
@@ -25,7 +26,7 @@ namespace ProjectorProMobile.Pages.Settings
                 if (value != _selColour)
                 {
                     _selColour = value;
-                    Preferences.Set(_lyricLanguage + "Colour", SelColour.ToHex());
+                    SettingsManager.Set(_lyricLanguage + "Colour", SelColour.ToHex());
                 }
             }
         }
@@ -35,26 +36,10 @@ namespace ProjectorProMobile.Pages.Settings
 
             _lyricLanguage = lyricLanguage;
             
-            string prefColour = Preferences.Get(_lyricLanguage + "Colour", "#000000");
+            string prefColour = SettingsManager.Get(_lyricLanguage + "Colour");
             SelColour = Color.FromHex(prefColour);
             colPicker.BindingContext = this;
             lblPageTitle.Text = _lyricLanguage + " Lyric Colour";
-        }
-
-        public static void CreateDefaultColourPreferencesIfNotExist()
-        {
-            if (!Preferences.ContainsKey("EnglishColour"))
-            {
-                Preferences.Set("EnglishColour", "#fff8f5");
-            }
-            if (!Preferences.ContainsKey("ChineseColour"))
-            {
-                Preferences.Set("ChineseColour", "#cccccc");
-            }
-            if (!Preferences.ContainsKey("PinyinColour"))
-            {
-                Preferences.Set("PinyinColour", "#2b2421");
-            }
         }
 
         private void btnBack_Clicked(object sender, EventArgs e)
