@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using Songs;
 using System.Threading;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile.Pages
 {
@@ -24,7 +25,7 @@ namespace ProjectorProMobile.Pages
         SongCollection searchItems;
         Querier querier;
         private CancellationTokenSource throttleCts = new CancellationTokenSource();
-        int searchDelay = 200;
+        int searchDelay = int.Parse(SettingsManager.Get("SearchDelay"));
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchInit(e.NewTextValue);

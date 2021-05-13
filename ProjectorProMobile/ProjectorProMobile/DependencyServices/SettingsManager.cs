@@ -34,7 +34,9 @@ namespace ProjectorProMobile.DependencyServices
             ["PinyinUnderline"] = "False",
             ["EnglishFontSize"] = defaultFontSize.ToString(),
             ["ChineseFontSize"] = defaultFontSize.ToString(),
-            ["PinyinFontSize"] = defaultFontSize.ToString()
+            ["PinyinFontSize"] = defaultFontSize.ToString(),
+            ["HttpTimeout"] = 10.ToString(),
+            ["SearchDelay"] = 200.ToString()
         };
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace ProjectorProMobile.DependencyServices
             }
             else
             {
-                throw new SettingNotFoundException(property);
+                return defaultSettings[property];
             }
         }
 

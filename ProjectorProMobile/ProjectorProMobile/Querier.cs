@@ -22,7 +22,8 @@ using ProjectorProMobile.DependencyServices;
         string defaultUrl = "projector-pro-server.herokuapp.com";
         string url = SettingsManager.Get("ServerAddress");
         baseUri = string.IsNullOrWhiteSpace(url) ? string.Format("http://{0}/api/songs", defaultUrl) : string.Format("http://{0}/api/songs", url);
-        client.Timeout = TimeSpan.FromSeconds(10);
+        int httpTimeout = int.Parse(SettingsManager.Get("HttpTimeout"));
+        client.Timeout = TimeSpan.FromSeconds(httpTimeout);
     }
 
     private enum SearchType
@@ -77,18 +78,5 @@ using ProjectorProMobile.DependencyServices;
         var keyValPair = Newtonsoft.Json.JsonConvert.DeserializeObject<IDictionary<string,string>>(jsonRes);
         string body = keyValPair.Values.First();
         return body;
-    }
-
-    private int LastChineseChar(string line)
-    {
-        Match chineseMatch = Regex.Match(line, @"[^\x00-\x7F]+");
-        bool containsChinese = chineseMatch.Success;
-        if (!containsChinese)
-        {
-            return -1;
-        }
-
-        Match englishMatch = Regex.Match(line, @"[a-zA-Z]");
-        return englishMatch.Index;
     }
 }
