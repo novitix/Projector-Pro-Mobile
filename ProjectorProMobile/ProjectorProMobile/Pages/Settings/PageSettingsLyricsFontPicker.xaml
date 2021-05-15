@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectorProMobile.Pages.Settings.PageSettingsLyricsFontPicker"
              xmlns:cc="clr-namespace:CustomControls"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             iOS:Page.UseSafeArea="True"
              BackgroundColor="{DynamicResource PageBgColor}">
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -60,7 +62,7 @@
                     <Label Text="Font size" Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Padding="0,0,0,5"/>
 
                     <Frame Grid.Row="4" Grid.Column="1" CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0" HorizontalOptions="EndAndExpand">
-                        <cc:ModernEntry x:Name="txtFontSize" Keyboard="Numeric" FontSize="18" BackgroundColor="{DynamicResource ControlBgColor}" HeightRequest="40" WidthRequest="50" HorizontalTextAlignment="Center"
+                        <cc:ModernEntry x:Name="txtFontSize" Keyboard="Numeric" FontSize="18" BackgroundColor="{DynamicResource ControlBgColor}" HeightRequest="40" WidthRequest="60" HorizontalTextAlignment="Center"
                                     TextColor="{DynamicResource ControlFgColor}" PlaceholderColor="{DynamicResource PlaceholderTextColour}" Text="{Binding FontSize, Mode=TwoWay}">
                             <cc:ModernEntry.Behaviors>
                                 <cc:FontValidationBehavior/>

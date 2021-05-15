@@ -12,7 +12,7 @@ namespace CustomControls
             BindableProperty.Create("TextPaddingRight",
                                     typeof(int),
                                     typeof(ModernEntry),
-                                    25);
+                                    0);
 
         public int TextPaddingRight
         {
@@ -24,7 +24,7 @@ namespace CustomControls
             BindableProperty.Create("TextPaddingLeft",
                                     typeof(int),
                                     typeof(ModernEntry),
-                                    25);
+                                    0);
 
         public int TextPaddingLeft
         {

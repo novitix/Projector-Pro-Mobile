@@ -19,9 +19,9 @@ namespace ProjectorProMobile.iOS
             {
                 ModernEntry caller = e.NewElement as ModernEntry;
 
-                Control.LeftView = new UIView(new CGRect(0, 0, caller.TextPaddingLeft, 0));
+                Control.LeftView = new UIView(new CGRect(0, 0, caller.TextPaddingLeft + 8, 0));
                 Control.LeftViewMode = UITextFieldViewMode.Always;
-                Control.RightView = new UIView(new CGRect(0, 0, caller.TextPaddingRight, 0));
+                Control.RightView = new UIView(new CGRect(0, 0, caller.TextPaddingRight + 8, 0));
                     
                 Control.RightViewMode = UITextFieldViewMode.Always;
             }

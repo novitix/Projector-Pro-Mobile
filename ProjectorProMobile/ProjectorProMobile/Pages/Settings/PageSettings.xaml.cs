@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 using ProjectorProMobile.Themes;
 //using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using ShaXam.DependencyServices;
-using Android.Views;
 using ProjectorProMobile.Pages.Settings;
 using ProjectorProMobile.DependencyServices;
 
