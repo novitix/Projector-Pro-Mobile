@@ -7,14 +7,15 @@ namespace ProjectorProMobile.DependencyServices
 {
     public class FormattedStringBuilder
     {
-        private static readonly Dictionary<string, FontData> _fontDataCache = new Dictionary<string, FontData>();
+        private static Dictionary<string, FontData> _fontDataCache = new Dictionary<string, FontData>();
         private readonly IList<Span> _spans = new List<Span>();
         private bool _withNewLine = true;
-        private ResourceDictionary _resDict;
 
-        public FormattedStringBuilder(ResourceDictionary resDict)
+        public FormattedStringBuilder() { }
+
+        public static void ClearFontCache()
         {
-            _resDict = resDict;
+            _fontDataCache = new Dictionary<string, FontData>();
         }
 
         public void AddSpan(string text, Span span)
@@ -35,26 +36,21 @@ namespace ProjectorProMobile.DependencyServices
                 throw new ArgumentNullException($"'Text' cannot be empty.");
             }
 
-            FontData data;
-            if (_fontDataCache.ContainsKey(styleResource))
+            if (!_fontDataCache.ContainsKey(styleResource))
             {
-                data = _fontDataCache[styleResource];
+                _fontDataCache.Add(styleResource, new FontData(styleResource));
             }
-            else
-            {
-                data = !string.IsNullOrWhiteSpace(styleResource)
-                    ? FontData.FromResource(styleResource, _resDict)
-                    : FontData.DefaultValues();
-                _fontDataCache.Add(styleResource, data);
-            }
+            FontData data = _fontDataCache[styleResource];
+
             _spans.Add(new Span
             {
                 Text = text,
                 FontAttributes = data.FontAttributes,
                 FontFamily = data.FontFamily,
                 FontSize = data.FontSize,
-                ForegroundColor = data.TextColor
-                
+                ForegroundColor = data.TextColour,
+                TextDecorations = data.TextDecorations
+
             });
         }
 

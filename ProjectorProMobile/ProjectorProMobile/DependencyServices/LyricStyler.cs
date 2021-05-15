@@ -59,7 +59,7 @@ namespace ProjectorProMobile.DependencyServices
             }
 
 
-            FormattedStringBuilder builder = new FormattedStringBuilder(_resDict);
+            FormattedStringBuilder builder = new FormattedStringBuilder();
 
             using (var reader = new StringReader(content))
             {
@@ -67,26 +67,23 @@ namespace ProjectorProMobile.DependencyServices
                 {
                     if (!int.TryParse(line.Substring(1, 1), out int tag)) continue;
                     LineType lineType = (LineType)tag;
-                    string styleName;
+                    string styleName = string.Empty;
                     switch (lineType)
                     {
                         case LineType.OnlyEnglish:
-                            styleName = "englishStyle";
+                            styleName = "English";
                             break;
                         case LineType.OnlyChinese:
-                            styleName = "chineseStyle";
+                            styleName = "Chinese";
                             break;
                         case LineType.OnlyPinyin:
-                            styleName = "pinyinStyle";
+                            styleName = "Pinyin";
                             break;
                         case LineType.EmptyOrWhitespace:
-                            styleName = "emptyStyle";
+                            styleName = "Empty";
                             break;
                         case LineType.ChorusTag:
-                            styleName = "chorusStyle";
-                            break;
-                        default:
-                            styleName = "unknownStyle";
+                            styleName = "Chorus";
                             break;
                     }
                     if (lineType == LineType.EmptyOrWhitespace)
@@ -95,6 +92,7 @@ namespace ProjectorProMobile.DependencyServices
                     }
                     else
                     {
+                        if (styleName == string.Empty) continue;
                         if (!showEnglish && lineType == LineType.OnlyEnglish || !showChinese && lineType == LineType.OnlyChinese || !showPinyin && lineType == LineType.OnlyPinyin) continue; // users can choose to hide certain types of lyrics
                         builder.AddSpan(line.Substring(3), styleName);
                     }

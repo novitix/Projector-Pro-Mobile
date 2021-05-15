@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ProjectorProMobile.DependencyServices
 {
@@ -17,24 +18,43 @@ namespace ProjectorProMobile.DependencyServices
             ["ServerAddress"] = "127.0.0.1:80",
             ["DarkMode"] = "True",
             ["LyricOverride"] = "True",
+
             ["EnglishShow"] = "True",
             ["ChineseShow"] = "True",
             ["PinyinShow"] = "True",
+            ["ChorusShow"] = "True", // c
+            ["EmptyShow"] = "True", // c
+
             ["EnglishColour"] = "#fff8f5",
             ["ChineseColour"] = "#cccccc",
             ["PinyinColour"] = "#2b2421",
+            ["ChorusColour"] = "#262830", // c
+            ["EmptyColour"] = "#262830", // c
+
             ["EnglishBold"] = "True",
             ["ChineseBold"] = "True",
             ["PinyinBold"] = "True",
+            ["ChorusBold"] = "True", // c
+            ["EmptyBold"] = "True", // c
+
             ["EnglishItalic"] = "False",
             ["ChineseItalic"] = "False",
             ["PinyinItalic"] = "False",
+            ["ChorusItalic"] = "False", // c
+            ["EmptyItalic"] = "False", // c
+
             ["EnglishUnderline"] = "False",
             ["ChineseUnderline"] = "False",
             ["PinyinUnderline"] = "False",
+            ["ChorusUnderline"] = "False", // c
+            ["EmptyUnderline"] = "False", // c
+
             ["EnglishFontSize"] = defaultFontSize.ToString(),
             ["ChineseFontSize"] = defaultFontSize.ToString(),
             ["PinyinFontSize"] = defaultFontSize.ToString(),
+            ["ChorusFontSize"] = defaultFontSize.ToString(), // c
+            ["EmptyFontSize"] = 1.ToString(), // c
+            ["FontFamily"] = "Roboto",
             ["HttpTimeout"] = 10.ToString(),
             ["SearchDelay"] = 200.ToString()
         };
@@ -51,6 +71,7 @@ namespace ProjectorProMobile.DependencyServices
             if (defaultSettings.ContainsKey(setting.Property))
             {
                 Preferences.Set(setting.Property.ToString(), setting.Value);
+                FormattedStringBuilder.ClearFontCache();
             }
             else
             {
@@ -72,7 +93,7 @@ namespace ProjectorProMobile.DependencyServices
             }
             else
             {
-                return defaultSettings[property];
+                throw new SettingNotFoundException(property);
             }
         }
 
