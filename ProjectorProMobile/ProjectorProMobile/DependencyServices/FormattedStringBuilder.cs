@@ -15,7 +15,7 @@ namespace ProjectorProMobile.DependencyServices
 
         public static void ClearFontCache()
         {
-            _fontDataCache = new Dictionary<string, FontData>();
+            _fontDataCache.Clear();
         }
 
         public void AddSpan(string text, Span span)
@@ -38,7 +38,15 @@ namespace ProjectorProMobile.DependencyServices
 
             if (!_fontDataCache.ContainsKey(styleResource))
             {
-                _fontDataCache.Add(styleResource, new FontData(styleResource));
+                try
+                {
+                    _fontDataCache.Add(styleResource, new FontData(styleResource));
+                }
+                catch (System.ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
             FontData data = _fontDataCache[styleResource];
 

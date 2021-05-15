@@ -219,7 +219,7 @@ namespace ProjectorProMobile
             checkUpdates = false;
         }
 
-        private static void ResetId()
+        public static void ResetId()
         {
             _id = default(int);
         }

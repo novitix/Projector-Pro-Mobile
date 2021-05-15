@@ -39,6 +39,11 @@ namespace ProjectorProMobile.Pages
 
         protected override void OnDisappearing()
         {
+            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
+            {
+                currentSong = new Song();
+                SessionManager.ResetId();
+            }
             Navigation.PopModalAsync();
             base.OnDisappearing();
             MessagingCenter.Send(this, "PreventLandscape");
