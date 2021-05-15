@@ -6,6 +6,10 @@ using Android.Content;
 using Android.Graphics.Drawables;
 using and = Android.Graphics;
 using System.ComponentModel;
+using CustomControls;
+using Android.Text;
+using Android.Content.Res;
+using ProjectorProMobile.DependencyServices;
 
 [assembly: ExportRenderer(typeof(CustomControls.ModernEntry), typeof(ModernEntryRenderer))]
 [assembly: ExportRenderer(typeof(CustomControls.PinEntry), typeof(PinEntryRenderer))]
@@ -24,25 +28,14 @@ namespace ProjectorProMobile.Droid
 
             if (Control != null)
             {
-                //Control.Background = new ColorDrawable(and.Color.Transparent);
-                ColorDrawable currentBackgroundColor = null;
-                if (Control.Background is ColorDrawable)
-                {
-                    currentBackgroundColor = Control.Background as ColorDrawable;
-                }
-
-                GradientDrawable gd = new GradientDrawable();
-                if (currentBackgroundColor != null)
-                {
-                    gd.SetCornerRadius(90);
-                    gd.SetColor(currentBackgroundColor.Color);
-                }
-                
-                //gd.SetStroke(2, and.Color.LightGray);
+                ModernEntry entry = e.NewElement as ModernEntry;
+                this.Control.SetPadding(entry.TextPaddingLeft, 0, entry.TextPaddingRight, 0);
+                var gd = new GradientDrawable();
+                gd.SetColor(and.Color.Transparent);
                 Control.Background = gd;
-
-                this.Control.SetPaddingRelative(35, 0, 35, 0);
-                
+                    
+                Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
+                //Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.White));
             }
         }
     }

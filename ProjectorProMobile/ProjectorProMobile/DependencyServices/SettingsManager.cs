@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace ProjectorProMobile.DependencyServices
 {
 
-    static class SettingsManager
+    public static class SettingsManager
     {
         private static readonly int defaultFontSize = 18;
         static Dictionary<string, string> defaultSettings = new Dictionary<string, string>()
@@ -119,7 +119,7 @@ namespace ProjectorProMobile.DependencyServices
         }
     }
 
-    class Setting
+    public class Setting
     {
         public string Property { get; set; }
         public string Value { get; set; }

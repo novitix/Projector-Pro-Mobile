@@ -58,12 +58,16 @@
                     <Rectangle Grid.Row="3" Grid.ColumnSpan="3"/>
 
                     <Label Text="Font size" Grid.Row="4" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Padding="0,0,0,5"/>
-                    <cc:ModernEntry x:Name="txtFontSize" Grid.Row="4" Grid.Column="1" Keyboard="Numeric" FontSize="18" BackgroundColor="{DynamicResource ControlBgColor}" HeightRequest="40" WidthRequest="50" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand"
+
+                    <Frame Grid.Row="4" Grid.Column="1" CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0" HorizontalOptions="EndAndExpand">
+                        <cc:ModernEntry x:Name="txtFontSize" Keyboard="Numeric" FontSize="18" BackgroundColor="{DynamicResource ControlBgColor}" HeightRequest="40" WidthRequest="50" HorizontalTextAlignment="Center"
                                     TextColor="{DynamicResource ControlFgColor}" PlaceholderColor="{DynamicResource PlaceholderTextColour}" Text="{Binding FontSize, Mode=TwoWay}">
-                        <cc:ModernEntry.Behaviors>
-                            <cc:FontValidationBehavior/>
-                        </cc:ModernEntry.Behaviors>
-                    </cc:ModernEntry>
+                            <cc:ModernEntry.Behaviors>
+                                <cc:FontValidationBehavior/>
+                            </cc:ModernEntry.Behaviors>
+                        </cc:ModernEntry>
+                    </Frame>
+                    
 
 
                 </Grid>

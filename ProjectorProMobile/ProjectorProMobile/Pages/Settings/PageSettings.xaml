@@ -49,10 +49,12 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-
+                    
                     <Label Grid.Row="1" Text="Server address"/>
-                    <cc:ModernEntry Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" x:Name="txtServerAddress" Placeholder="The link to the server" PlaceholderColor="{DynamicResource PlaceholderTextColour}" TextChanged="txtServerAddress_TextChanged" Margin="0,0,0,0"
+                    <Frame CornerRadius="10" Grid.Column="1" Grid.Row="2" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0" HorizontalOptions="FillAndExpand">
+                        <cc:ModernEntry HorizontalOptions="FillAndExpand" x:Name="txtServerAddress" Placeholder="The link to the server" PlaceholderColor="{DynamicResource PlaceholderTextColour}" TextChanged="txtServerAddress_TextChanged" Margin="0,0,0,0"
                                 BackgroundColor="{DynamicResource ControlBgColor}" TextColor="{DynamicResource ControlFgColor}" HeightRequest="55"/>
+                    </Frame>
                     <Rectangle Grid.Row="3" Grid.ColumnSpan="3"/>
 
                     <Label Grid.Row="4" Grid.Column="1" Text="Dark Mode" VerticalOptions="Center"/>

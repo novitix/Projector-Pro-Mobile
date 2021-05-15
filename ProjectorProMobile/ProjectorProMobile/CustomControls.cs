@@ -12,7 +12,7 @@ namespace CustomControls
             BindableProperty.Create("TextPaddingRight",
                                     typeof(int),
                                     typeof(ModernEntry),
-                                    0);
+                                    25);
 
         public int TextPaddingRight
         {
@@ -24,13 +24,25 @@ namespace CustomControls
             BindableProperty.Create("TextPaddingLeft",
                                     typeof(int),
                                     typeof(ModernEntry),
-                                    0);
+                                    25);
 
         public int TextPaddingLeft
         {
             get => (int)GetValue(TextPaddingLeftProperty);
             set => SetValue(TextPaddingLeftProperty, value);
         }
+
+        public int CornerRadius
+        {
+            get => (int)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
+        }
+
+        public static readonly BindableProperty CornerRadiusProperty =
+            BindableProperty.Create("CornerRadius",
+                                    typeof(int),
+                                    typeof(ModernEntry),
+                                    0);
     }
 
     public class PinEntry : Entry
