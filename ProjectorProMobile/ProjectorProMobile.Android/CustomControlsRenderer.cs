@@ -29,7 +29,7 @@ namespace ProjectorProMobile.Droid
             if (Control != null)
             {
                 ModernEntry entry = e.NewElement as ModernEntry;
-                this.Control.SetPadding(entry.TextPaddingLeft, 0, entry.TextPaddingRight, 0);
+                this.Control.SetPadding(entry.TextPaddingLeft+30, 0, entry.TextPaddingRight+30, 0);
                 var gd = new GradientDrawable();
                 gd.SetColor(and.Color.Transparent);
                 Control.Background = gd;
