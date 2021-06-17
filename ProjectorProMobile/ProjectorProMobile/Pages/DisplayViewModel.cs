@@ -117,4 +117,5 @@ namespace ProjectorProMobile.Pages
             await UpdateSong();
         }
     }
+
 }
