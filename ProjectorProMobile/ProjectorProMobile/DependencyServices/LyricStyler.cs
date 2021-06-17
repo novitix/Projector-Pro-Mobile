@@ -8,37 +8,9 @@ using Xamarin.Forms;
 
 namespace ProjectorProMobile.DependencyServices
 {
-    public class LyricStyler : INotifyPropertyChanged
+    public static class LyricStyler
     {
-        ResourceDictionary _resDict;
-        public LyricStyler(ResourceDictionary resDict)
-        {
-            _resDict = resDict;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        FormattedString _formattedLyrics;
-        public FormattedString FormattedLyrics
-        {
-            set
-            {
-                if (_formattedLyrics != value)
-                {
-                    _formattedLyrics = value;
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("FormattedLyrics"));
-                    }
-                }
-            }
-            get
-            {
-                return _formattedLyrics;
-            }
-        }
-
-        public void FormatAndSet(string content)
+        public static FormattedString Style(string content)
         {
             bool hasEnglish = content.Contains("<0>");
             bool hasChinese = content.Contains("<1>");
@@ -103,7 +75,7 @@ namespace ProjectorProMobile.DependencyServices
             //builder.WithoutNewLine();
 
             FormattedString formattedString = builder.Build();
-            FormattedLyrics = formattedString;
+            return formattedString;
         }
     }
 }

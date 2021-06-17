@@ -6,7 +6,8 @@
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              xmlns:dep="clr-namespace:ProjectorProMobile.DependencyServices"
-             x:Class="ProjectorProMobile.Pages.PageDisplay" BindingContext="this">
+             xmlns:local="clr-namespace:ProjectorProMobile.Pages"
+             x:Class="ProjectorProMobile.Pages.PageDisplay">
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
@@ -15,6 +16,7 @@
             <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
     </ContentPage.Resources>
+    
     
     <ContentPage.Content>
         <Grid Padding="0" Margin="0" RowSpacing="0">
@@ -33,8 +35,8 @@
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <ImageButton Grid.Column="0" x:Name="btnExitDisplay" Clicked="btnExitDisplay_Clicked" Source="{DynamicResource LeftIconName}" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <Label Grid.Column="1" x:Name="lblTitle" Text="{Binding Title}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16"/>
-                <Label Grid.Column="2" x:Name="lblKey" Text="{Binding Key}" HorizontalOptions="End" HorizontalTextAlignment="End" FontSize="20"/>
+                <Label Grid.Column="1" x:Name="lblTitle" Text="{Binding CurrentSong.Title}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+                <Label Grid.Column="2" x:Name="lblKey" Text="{Binding CurrentSong.Key}" HorizontalOptions="End" HorizontalTextAlignment="End" FontSize="20"/>
             </Grid>
             <BoxView BackgroundColor="{DynamicResource LyricsBgColor}" Grid.Column="0" Grid.Row="1"/>
             <ScrollView x:Name="scrollVw" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Column="0" Grid.Row="1" IsClippedToBounds="True">
