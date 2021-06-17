@@ -17,21 +17,20 @@ namespace ProjectorProMobile.Pages
     public partial class PageDisplay : ContentPage
     {
         public LyricStyler lyricStyler;
-        Song currentSong;
+        private Song currentSong = new Song();
         public PageDisplay(int songId = -1)
         {
             InitializeComponent();
-            currentSong = new Song();
-            if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
-            {
-                SessionManager.IdChanged += UpdateText;
-            }
-            else
-            {
-                UpdateText(songId);
-            }
+            
             lyricStyler = new LyricStyler(Resources);
             txtContent.BindingContext = lyricStyler;
+
+            if (SessionManager.Hosting != SessionManager.HostStatus.Follow)
+            {
+                currentSong.ID = songId;
+            }
+            
+            currentSong.PropertyChanged += currentSong_PropertyChanged;
             currentSong.Body = "Waiting for connection...";
         }
 
@@ -56,29 +55,21 @@ namespace ProjectorProMobile.Pages
             MessagingCenter.Send(this, "AllowLandscape");
             if (SessionManager.Hosting == SessionManager.HostStatus.Follow)
             {
+                SessionManager.IdChanged += SessionManager_IdChanged;
                 SessionManager.BeginUpdateChecks();
             }
             else
             {
-                
+                UpdateSong();
             }
         }
 
 
-        private async void UpdateText(int newId)
+        private void SessionManager_IdChanged(int newId)
         {
             if (newId == -1) return; // id = -1 means that the host has not sent a song id yet
             
             currentSong.ID = newId;
-            string body = await currentSong.SetBodyAsync();
-            if (body == null)
-            {
-                await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
-                ExitDisplay();
-                return;
-            }
-            currentSong.Body = LyricFormatter.GetFormattedBody(body);
-            lyricStyler.FormatAndSet(currentSong.Body);
         }
         protected override bool OnBackButtonPressed()
         {
@@ -104,6 +95,28 @@ namespace ProjectorProMobile.Pages
                 SessionManager.Hosting = SessionManager.HostStatus.Solo;
             }
             Navigation.PopModalAsync();
+        }
+
+        private async void currentSong_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ID")
+            {
+                await UpdateSong();
+            }
+        }
+
+        private async Task UpdateSong()
+        {
+            currentSong = await new Querier().GetSongAsync(currentSong.ID);
+            lblTitle.BindingContext = currentSong;
+            lblKey.BindingContext = currentSong;
+            if (currentSong.Body == null)
+            {
+                await DisplayAlert("Error 4", "Unable connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
+                ExitDisplay();
+                return;
+            }
+            lyricStyler.FormatAndSet(LyricFormatter.GetFormattedBody(currentSong.Body));
         }
 
     }

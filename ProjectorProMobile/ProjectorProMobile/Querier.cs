@@ -19,9 +19,8 @@ using ProjectorProMobile.DependencyServices;
 
     public Querier()
     {
-        string defaultUrl = "projector-pro-server.herokuapp.com";
         string url = SettingsManager.Get("ServerAddress");
-        baseUri = string.IsNullOrWhiteSpace(url) ? string.Format("http://{0}/api/songs", defaultUrl) : string.Format("http://{0}/api/songs", url);
+        baseUri = string.Format("http://{0}/api/songs", url);
         int httpTimeout = int.Parse(SettingsManager.Get("HttpTimeout"));
         client.Timeout = TimeSpan.FromSeconds(httpTimeout);
     }
@@ -33,12 +32,12 @@ using ProjectorProMobile.DependencyServices;
     }
 
     public async Task<SongCollection> GetSearchResultsAsync(string searchTerm)
-        {
+    {
         if (string.IsNullOrWhiteSpace(searchTerm)) return null;
         SearchType searchType;
         searchType = IsDigitsOnly(searchTerm) ? SearchType.number : SearchType.filter;
 
-        string uri = string.Format("{0}?{1}={2}", baseUri, searchType.ToString(), searchTerm);
+        string uri = string.Format("{0}/search?{1}={2}", baseUri, searchType.ToString(), searchTerm);
         string jsonRes;
         jsonRes = await GetQueryAsync(uri);
 
@@ -46,6 +45,10 @@ using ProjectorProMobile.DependencyServices;
 
         List<Song> collection = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Song>>(jsonRes);
         return new SongCollection(collection);
+    }
+    bool IsDigitsOnly(string str)
+    {
+        return str.All(c => c >= '0' && c <= '9');
     }
 
     private async Task<string> GetQueryAsync(string uri)
@@ -63,20 +66,14 @@ using ProjectorProMobile.DependencyServices;
         return jsonRes;
     }
 
-    bool IsDigitsOnly(string str)
-    {
-        return str.All(c => c >= '0' && c <= '9');
-    }
 
-    public async Task<string> GetBodyAsync(int id)
+    public async Task<Song> GetSongAsync(int id)
     {
-        HttpClient client = new HttpClient();
-        string uri = string.Format("{0}?id={1}", baseUri, id.ToString());
+        string uri = string.Format("{0}/get-song?id={1}", baseUri, id.ToString());
         string jsonRes = await GetQueryAsync(uri);
         if (string.IsNullOrWhiteSpace(jsonRes)) return null;
 
-        var keyValPair = Newtonsoft.Json.JsonConvert.DeserializeObject<IDictionary<string,string>>(jsonRes);
-        string body = keyValPair.Values.First();
-        return body;
+        var song = Newtonsoft.Json.JsonConvert.DeserializeObject<Song>(jsonRes);
+        return song;
     }
 }

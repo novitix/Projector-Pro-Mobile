@@ -6,49 +6,43 @@
              iOS:Page.UseSafeArea="True"
              xmlns:cc="clr-namespace:CustomControls"
              xmlns:dep="clr-namespace:ProjectorProMobile.DependencyServices"
-             x:Class="ProjectorProMobile.Pages.PageDisplay" BindingContext="">
+             x:Class="ProjectorProMobile.Pages.PageDisplay" BindingContext="this">
     <ContentPage.Resources>
-        <Style x:Key="englishStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="#fff8f5"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style x:Key="chineseStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="#cccccc"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style x:Key="pinyinStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="#2b2421"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style x:Key="emptyStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="Gray"/>
-            <Setter Property="FontSize" Value="1"/>
-        </Style>
-        <Style x:Key="chorusStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="#262830"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style x:Key="unknownStyle" TargetType="Span">
-            <Setter Property="TextColor" Value="Gray"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource ControlFgColor}"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="0" Margin="0" RowSpacing="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <BoxView BackgroundColor="{DynamicResource LyricsBgColor}" Grid.Column="0" Grid.Row="0"/>
-            <ScrollView x:Name="scrollVw" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Column="0" Grid.Row="0" IsClippedToBounds="True">
+
+            <Grid Grid.Column="0" Grid.Row="0" Padding="20,0,20,0" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource PageBgColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0" x:Name="btnExitDisplay" Clicked="btnExitDisplay_Clicked" Source="{DynamicResource LeftIconName}" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label Grid.Column="1" x:Name="lblTitle" Text="{Binding Title}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+                <Label Grid.Column="2" x:Name="lblKey" Text="{Binding Key}" HorizontalOptions="End" HorizontalTextAlignment="End" FontSize="20"/>
+            </Grid>
+            <BoxView BackgroundColor="{DynamicResource LyricsBgColor}" Grid.Column="0" Grid.Row="1"/>
+            <ScrollView x:Name="scrollVw" Orientation="Vertical" VerticalOptions="StartAndExpand" Grid.Column="0" Grid.Row="1" IsClippedToBounds="True">
                 <Label x:Name="txtContent" VerticalOptions="FillAndExpand" FontSize="28" Margin="30" FontAttributes="Bold" LineHeight="1.3" LineBreakMode="WordWrap" FormattedText="{Binding FormattedLyrics}"/>
             </ScrollView>
-            <ImageButton x:Name="btnExitDisplay" Source="{DynamicResource ExitIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
+            <!--<ImageButton x:Name="btnExitDisplay" Source="{DynamicResource ExitIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
                          Padding="11" Margin="8" BackgroundColor="{DynamicResource ControlBgColor}"
-                         Clicked="btnExitDisplay_Clicked" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>
+                         Clicked="btnExitDisplay_Clicked" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>-->
         </Grid>
             
     </ContentPage.Content>
