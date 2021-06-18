@@ -15,7 +15,7 @@ namespace ProjectorProMobile.DependencyServices
         {
             ["SessionCode"] = "0000",
             ["HostStatus"] = SessionManager.HostStatus.Solo.ToString(),
-            ["ServerAddress"] = "127.0.0.1:80",
+            ["ServerAddress"] = "www.ppmserver.tk",
             ["DarkMode"] = "True",
             ["LyricOverride"] = "True",
 

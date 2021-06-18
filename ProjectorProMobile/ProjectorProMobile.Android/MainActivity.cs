@@ -33,7 +33,7 @@ namespace ProjectorProMobile.Droid
                 RequestedOrientation = ScreenOrientation.Portrait;
             });
 
-            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+            //this.Window.AddFlags(WindowManagerFlags.Fullscreen);
             MessagingCenter.Subscribe<PageSettings>(this, "UpdateNavBarColour", sender =>
             {
                 string darkMode = Preferences.Get("darkMode", "true").ToString().ToLower();
@@ -41,6 +41,7 @@ namespace ProjectorProMobile.Droid
             });
 
             LoadApplication(new App());
+            
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

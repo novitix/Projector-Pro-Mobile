@@ -51,7 +51,7 @@ using ProjectorProMobile.DependencyServices;
         return str.All(c => c >= '0' && c <= '9');
     }
 
-    private async Task<string> GetQueryAsync(string uri)
+    public async Task<string> GetQueryAsync(string uri)
     {
         string jsonRes = "";
         try
