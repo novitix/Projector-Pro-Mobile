@@ -28,9 +28,8 @@ namespace ProjectorProMobile.Pages
             }
         }
 
-        async private void btnCreateSesh_Clicked(object sender, EventArgs e)
+        async private void frameCreateSession_Clicked(object sender, EventArgs e)
         {
-            
             int? res = await SessionManager.CreateSessionAsync();
             if (res == null)
             {
@@ -96,5 +95,6 @@ namespace ProjectorProMobile.Pages
         {
             txtHiddenCode.Focus();
         }
+
     }
 }

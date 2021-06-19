@@ -46,10 +46,18 @@
                     </BoxView.GestureRecognizers>
                 </BoxView>
             </Grid>
-            
-            <ImageButton x:Name="btnCreateSesh" Source="{DynamicResource CreateIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
-                         Padding="11" Margin="8" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
-                         BackgroundColor="{DynamicResource ControlBgColor}" Clicked="btnCreateSesh_Clicked"/>
+
+            <Frame BackgroundColor="{DynamicResource ControlBgColor}" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" CornerRadius="30" HeightRequest="50" Padding="23,5,23,5" Margin="0,0,10,0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="frameCreateSession_Clicked"/>
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" Padding="0">
+                    <ImageButton x:Name="btnCreateSesh" Source="{DynamicResource CreateIconName}" WidthRequest="26" BindingContext="{x:Reference btnCreateSesh}" HeightRequest="{Binding WidthRequest}"
+                          Margin="0,0,8,0" Padding="0" BackgroundColor="Transparent"/>
+                    <Label Text="Create Session" VerticalOptions="Center" HorizontalOptions="End" TextColor="{DynamicResource ControlFgColor}" FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
             <cc:ModernEntry x:Name="txtHiddenCode" BackgroundColor="Transparent" WidthRequest="0.000001" HeightRequest="0.000001" HorizontalOptions="End" TextChanged="txtHiddenCode_TextChanged" Keyboard="Numeric" IsReadOnly="False" IsEnabled="True">
                 <cc:ModernEntry.Behaviors>
                     <cc:NumericValidationBehavior/>
