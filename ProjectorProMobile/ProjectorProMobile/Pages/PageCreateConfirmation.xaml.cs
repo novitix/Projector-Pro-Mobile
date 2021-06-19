@@ -22,14 +22,15 @@ namespace ProjectorProMobile.Pages
             code4.Text = strCode.Substring(3, 1);
         }
 
-        private void btnExitSesh_Clicked(object sender, EventArgs e)
-        {
-            SessionManager.Hosting = SessionManager.HostStatus.Solo;
-            Navigation.PopAsync();
-        }
         protected override bool OnBackButtonPressed()
         {
             return true;
+        }
+
+        private void frameExitSession_Tapped(object sender, EventArgs e)
+        {
+            SessionManager.Hosting = SessionManager.HostStatus.Solo;
+            Navigation.PopAsync();
         }
     }
 }

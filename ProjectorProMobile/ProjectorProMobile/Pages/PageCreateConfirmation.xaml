@@ -31,10 +31,17 @@
             </StackLayout>
             <Label Text="As the host, songs displayed on this device will be mirrored to joined devices."
                    HorizontalTextAlignment="Center" Margin="40,30,40,0" TextColor="{DynamicResource ControlFgColor}"/>
-            
-            <ImageButton x:Name="btnExitSesh" Source="{DynamicResource ExitIconName}" WidthRequest="50" HeightRequest="50" CornerRadius="25"
-                         Padding="11" Margin="8" BackgroundColor="{DynamicResource ControlBgColor}"
-                         Clicked="btnExitSesh_Clicked" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>
+
+            <Frame BackgroundColor="{DynamicResource ControlBgColor}" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" CornerRadius="30" HeightRequest="50" Padding="23,5,23,5" Margin="0,0,10,0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="frameExitSession_Tapped"/>
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" Padding="0">
+                    <ImageButton x:Name="btnExitSesh" Source="{DynamicResource ExitIconName}" WidthRequest="26" BindingContext="{x:Reference btnExitSesh}" HeightRequest="{Binding WidthRequest}"
+                          Margin="0,0,8,0" Padding="0" BackgroundColor="Transparent"/>
+                    <Label Text="Exit Session" VerticalOptions="Center" HorizontalOptions="End" TextColor="{DynamicResource ControlFgColor}" FontSize="16"/>
+                </StackLayout>
+            </Frame>
             <Rectangle HeightRequest="1" Margin="0" VerticalOptions="End" BackgroundColor="{DynamicResource TabBarSeparatorColour}"/>
         </StackLayout>
     </ContentPage.Content>
