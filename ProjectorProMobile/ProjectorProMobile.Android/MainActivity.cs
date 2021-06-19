@@ -8,6 +8,7 @@ using Android.Views;
 using Xamarin.Forms;
 using ProjectorProMobile.Pages;
 using Xamarin.Essentials;
+using ProjectorProMobile.DependencyServices;
 
 namespace ProjectorProMobile.Droid
 {
@@ -20,6 +21,8 @@ namespace ProjectorProMobile.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            UpdateNavBarColour();
 
             //allowing the device to change the screen orientation based on the rotation 
             MessagingCenter.Subscribe<PageDisplay>(this, "AllowLandscape", sender =>
@@ -36,12 +39,30 @@ namespace ProjectorProMobile.Droid
             //this.Window.AddFlags(WindowManagerFlags.Fullscreen);
             MessagingCenter.Subscribe<PageSettings>(this, "UpdateNavBarColour", sender =>
             {
-                string darkMode = Preferences.Get("darkMode", "true").ToString().ToLower();
-                this.Window.SetNavigationBarColor((darkMode == "true") ? Android.Graphics.Color.Black : Android.Graphics.Color.White);
+                UpdateNavBarColour();
             });
 
             LoadApplication(new App());
             
+            
+        }
+
+        private void UpdateNavBarColour()
+        {
+            string darkMode = SettingsManager.Get("DarkMode").ToString().ToLower();
+            this.Window.SetNavigationBarColor((darkMode == "true") ? Android.Graphics.Color.ParseColor("#111111") : Android.Graphics.Color.White);
+            Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Android.Graphics.Color color;
+            if (darkMode == "true")
+            {
+                color = Android.Graphics.Color.ParseColor("#111111");
+            }
+            else
+            {
+                color = Android.Graphics.Color.ParseColor("#907E7A");
+            }
+            Window.SetStatusBarColor(color);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

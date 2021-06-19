@@ -60,7 +60,7 @@
                     <Label Grid.Row="4" Grid.Column="1" Text="Dark Mode" VerticalOptions="Center"/>
                     <Switch Grid.Row="4" Grid.Column="1" x:Name="swhDarkMode" Toggled="swhDarkMode_Toggled" HorizontalOptions="End"/>
                     
-                    <Rectangle Grid.Row="5" Grid.ColumnSpan="3"/>
+                    <Rectangle Grid.Row="5" Grid.ColumnSpan="3" HeightRequest="1"/>
                     <AbsoluteLayout Grid.Row="6" Grid.Column="1">
                         <Label Text="Change lyric language"/>
                         <Image Source="{DynamicResource RightIconName}" BackgroundColor="Transparent"

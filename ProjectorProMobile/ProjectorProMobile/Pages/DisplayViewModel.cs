@@ -59,7 +59,13 @@ namespace ProjectorProMobile.Pages
                 }
             }
         }
-        public DisplayViewModel(int songId)
+
+        public DisplayViewModel()
+        {
+
+        }
+
+        public void InitialiseWithID(int songId)
         {
             CurrentSong.ID = songId;
             //if (SessionManager.Hosting != SessionManager.HostStatus.Follow)
@@ -73,14 +79,12 @@ namespace ProjectorProMobile.Pages
             }
             else
             {
-                UpdateSong();
+                _ = UpdateSong();
             }
 
             CurrentSong.PropertyChanged += currentSong_PropertyChanged;
             CurrentSong.Body = "Waiting for connection...";
         }
-
-        
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

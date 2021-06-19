@@ -16,12 +16,16 @@ namespace ProjectorProMobile.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageDisplay : ContentPage
     {
-
         public PageDisplay(int songId = -1)
         {
             InitializeComponent();
-            BindingContext = new DisplayViewModel(songId);
+            var displayViewModel = BindingContext as DisplayViewModel;
+            displayViewModel.InitialiseWithID(songId);
+            lblTitle.BindingContext = displayViewModel;
+            lblKey.BindingContext = displayViewModel;
+            svTitle.PropertyChanged += SvTitle_PropertyChanged;
         }
+
 
         protected override void OnDisappearing()
         {
@@ -67,6 +71,17 @@ namespace ProjectorProMobile.Pages
             Navigation.PopModalAsync();
         }
 
-
+        
+        private void scrollVw_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            svTitle.ScrollToAsync(0, svTitle.ContentSize.Height, false);
+        }
+        private void SvTitle_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "HeightRequest")
+            {
+                svTitle.IsVisible = (svTitle.HeightRequest > 0.01);
+            }
+        }
     }
 }

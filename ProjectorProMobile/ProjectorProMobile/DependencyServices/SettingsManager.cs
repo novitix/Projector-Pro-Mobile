@@ -89,6 +89,10 @@ namespace ProjectorProMobile.DependencyServices
         {
             if (defaultSettings.ContainsKey(property))
             {
+                if (!Preferences.ContainsKey(property))
+                {
+                    Preferences.Set(property, defaultSettings[property]);
+                }
                 return Preferences.Get(property, defaultSettings[property]);
             }
             else
