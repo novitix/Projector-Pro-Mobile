@@ -24,12 +24,20 @@
         <StackLayout>
             <Label x:Name="txtTitle" Text="Session Code" FontSize="30" HorizontalTextAlignment="Center" Margin="0,15,0,15" TextColor="{DynamicResource ControlFgColor}"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <cc:ModernEntry x:Name="code1"/>
-                <cc:ModernEntry x:Name="code2"/>
-                <cc:ModernEntry x:Name="code3"/>
-                <cc:ModernEntry x:Name="code4"/>
+                <Frame CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0">
+                    <cc:ModernEntry x:Name="code1"/>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0">
+                    <cc:ModernEntry x:Name="code2"/>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0">
+                    <cc:ModernEntry x:Name="code3"/>
+                </Frame>
+                <Frame CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0">
+                    <cc:ModernEntry x:Name="code4"/>
+                </Frame>
             </StackLayout>
-            <Label Text="As the host, songs displayed on this device will be mirrored to joined devices."
+            <Label x:Name="lblStatusMessage" Text="Loading..."
                    HorizontalTextAlignment="Center" Margin="40,30,40,0" TextColor="{DynamicResource ControlFgColor}"/>
 
             <Frame BackgroundColor="{DynamicResource ControlBgColor}" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" CornerRadius="30" HeightRequest="50" Padding="23,5,23,5" Margin="0,0,10,0">

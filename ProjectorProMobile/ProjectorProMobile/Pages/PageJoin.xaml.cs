@@ -24,21 +24,13 @@ namespace ProjectorProMobile.Pages
             ClearCode();
             if (SessionManager.Hosting == SessionManager.HostStatus.Host)
             {
-                await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
+                await Navigation.PushAsync(new PageCreateConfirmation(false, SessionManager.SessionCode));
             }
         }
 
         async private void frameCreateSession_Clicked(object sender, EventArgs e)
         {
-            int? res = await SessionManager.CreateSessionAsync();
-            if (res == null)
-            {
-                await DisplayAlert("Error 1", "Unable to connect to the server. Please check your internet connection and/or the server address then try again.", "Close");
-            }
-            else
-            {
-                await Navigation.PushAsync(new PageCreateConfirmation(SessionManager.SessionCode));
-            }
+            await Navigation.PushAsync(new PageCreateConfirmation(true));
         }
 
         async private void txtHiddenCode_TextChanged(object sender, TextChangedEventArgs e)

@@ -52,6 +52,8 @@ namespace ProjectorProMobile
         {
             string createEndPt = string.Format("http://{0}/api/session/create-session", getBaseUrl());
             HttpClient client = new HttpClient();
+            int httpTimeout = int.Parse(SettingsManager.Get("HttpTimeout"));
+            client.Timeout = TimeSpan.FromSeconds(httpTimeout);
             try
             {
                 HttpResponseMessage task = await client.PostAsync(createEndPt, null);
@@ -75,6 +77,8 @@ namespace ProjectorProMobile
         {
             string updateEndPt = string.Format("http://{0}/api/session/update-session", getBaseUrl());
             HttpClient client = new HttpClient();
+            int httpTimeout = int.Parse(SettingsManager.Get("HttpTimeout"));
+            client.Timeout = TimeSpan.FromSeconds(httpTimeout);
             string jsonData = JsonConvert.SerializeObject(new
             {
                 sessionCode = SessionCode,
@@ -150,6 +154,8 @@ namespace ProjectorProMobile
             }
 
             HttpClient client = new HttpClient();
+            int httpTimeout = int.Parse(SettingsManager.Get("HttpTimeout"));
+            client.Timeout = TimeSpan.FromSeconds(httpTimeout);
             HttpResponseMessage response = await client.GetAsync(endPt);
             return response;
         }
