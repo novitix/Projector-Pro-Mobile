@@ -12,7 +12,7 @@
             <!-- Place new controls here (8, 37)-->
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" Margin="20,20,20,20" ColumnSpacing="0" RowSpacing="0">
                 <Frame CornerRadius="10" BackgroundColor="{DynamicResource ControlBgColor}" Margin="0" Padding="0">
-                    <cc:ModernEntry x:Name="txtSearch" ReturnType="Search" Placeholder="Search" FontSize="20" TextPaddingRight="34" HeightRequest="68"
+                    <cc:ModernEntry x:Name="txtSearch" ReturnType="Search" Placeholder="Search" FontSize="20" TextPaddingRight="70" HeightRequest="68"
                                             TextChanged="txtSearch_TextChanged" BackgroundColor="{DynamicResource ControlBgColor}"
                                             TextColor="{DynamicResource ControlFgColor}"
                                             PlaceholderColor="{DynamicResource PlaceholderTextColour}"/>

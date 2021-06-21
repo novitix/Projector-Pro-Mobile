@@ -32,6 +32,7 @@ namespace ProjectorProMobile.Pages
         private void txtServerAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
             SettingsManager.Set("ServerAddress", txtServerAddress.Text);
+
         }
 
         private void swhDarkMode_Toggled(object sender, ToggledEventArgs e)
