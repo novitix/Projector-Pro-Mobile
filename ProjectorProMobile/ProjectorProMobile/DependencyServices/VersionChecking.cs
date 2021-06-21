@@ -7,7 +7,7 @@ namespace ProjectorProMobile.DependencyServices
 {
     static class VersionChecking
     {
-        private static string compatibleServerVersion = "1.2";
+        private static string compatibleServerVersion = "1.3";
         public static string UpdatesServer = "http://www.ppmserver.tk";
 
         public async static Task<bool> IsServerCompatible()

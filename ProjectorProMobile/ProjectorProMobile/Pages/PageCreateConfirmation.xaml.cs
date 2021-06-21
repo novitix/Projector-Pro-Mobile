@@ -15,6 +15,7 @@ namespace ProjectorProMobile.Pages
 
         bool _createNewSession;
         int? _code;
+        bool firstCreation = true;
         public PageCreateConfirmation(bool createNewSession, int? code = null)
         {
             InitializeComponent();
@@ -24,7 +25,8 @@ namespace ProjectorProMobile.Pages
 
         protected async override void OnAppearing()
         {
-            if (_createNewSession) _code = await SessionManager.CreateSessionAsync();
+            if (_createNewSession && firstCreation) _code = await SessionManager.CreateSessionAsync();
+            firstCreation = false;
             await DisplayCode();
         }
 
